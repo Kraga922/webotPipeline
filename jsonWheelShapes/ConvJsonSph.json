@@ -1,0 +1,6 @@
+{
+  "Sphere": {
+    "radius": ".04",
+    "subdivision": "1"
+  }
+}

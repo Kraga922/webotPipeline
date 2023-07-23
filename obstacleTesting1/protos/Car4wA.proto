@@ -1,0 +1,153 @@
+#VRML_SIM R2023b utf8
+# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+# license url: https://cyberbotics.com/webots_assets_license
+# documentation url: https://webots.cloud/run?url=https://github.com/cyberbotics/webots/blob/released/projects/samples/tutorials/protos/FourWheelsRobot.proto
+# keywords: robot/wheeled
+EXTERNPROTO "WheelP2.proto"
+
+PROTO Car4wA [
+  field SFVec3f    translation  0 0 0.04
+  field SFRotation rotation     0 0 1 0
+  field SFFloat    bodyMass     2
+  field SFString   controller   "CarSup"
+  field  SFString  name         "Car4wA" 
+  field SFFloat    colorNoise    0.0     
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    supervisor TRUE
+    children [
+      DEF BODY Shape {
+        appearance PBRAppearance {
+          baseColor 0.917647 0.145098 0.145098
+          roughness 1
+          metalness 0
+        }
+        geometry Box {
+          size 0.2 0.1 0.05
+        }
+      }
+      DEF WHEEL1 HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor 0.05 0.06 0
+        }
+        device [
+          RotationalMotor {
+            name "motor1"
+          }
+        ]
+        endPoint WheelP2 {
+            translation 0.05 0.06 0
+            rotation 1 0 0 1.5708
+            name "front left wheel" 
+        }
+        
+      }
+      DEF WHEEL2 HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor 0.05 -0.06 0
+        }
+        device [
+          RotationalMotor {
+            name "motor2"
+          }
+        ]
+        endPoint WheelP2 {
+          translation 0.05 -0.06 0
+          rotation 1 0 0 1.5708
+          name "front right wheel" 
+
+        }
+        
+      }
+      DEF WHEEL3 HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor -0.05 0.06 0
+        }
+        device [
+          RotationalMotor {
+            name "motor3"
+          }
+        ]
+        endPoint WheelP2 {
+            translation -0.05 0.06 0
+            rotation 1 0 0 1.5708
+            name "back left wheel"
+
+        }
+      }
+      DEF WHEEL4 HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor -0.05 -0.06 0
+        }
+        device [
+          RotationalMotor {
+            name "motor4"
+          }
+        ]
+        endPoint WheelP2 {
+          translation -0.05 -0.06 0
+          rotation 1 0 0 1.5708
+          name "back right wheel"
+
+        }
+      }
+      DEF DS_RIGHT DistanceSensor {
+        translation 0.1 -0.03 0
+        rotation 0 0 1 -0.3
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.184314 0.596078 0.847059
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.01 0.01 0.01
+            }
+          }
+        ]
+        name "ds_right"
+      }
+      DEF DS_LEFT DistanceSensor {
+        translation 0.1 0.03 0
+        rotation 0 0 1 0.3
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.184314 0.596078 0.847059
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.01 0.01 0.01
+            }
+          }
+        ]
+        name "ds_left"
+      }
+      Camera {
+        translation 0.1 0 0.034000
+        fieldOfView 1.04
+        width 640
+        height 480
+        noise IS colorNoise
+        name "camera"
+      }
+    ]
+    name IS name
+    boundingObject USE BODY
+    physics Physics {
+      density -1
+      mass IS bodyMass
+    }
+    controller "CarSup"
+  }
+}
