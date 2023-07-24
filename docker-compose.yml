@@ -1,0 +1,9 @@
+version: '2.1'
+services:
+  webots:
+    build: .
+    image: sricsl/trinity-webots:0.0.1
+    volumes:
+      - .:/opt/pipeline:rw
+    working_dir: /opt/pipeline/obstacleTesting1/worlds
+    command: xvfb-run webots --stdout --stderr --batch --mode=fast obstacleTesting2.wbt

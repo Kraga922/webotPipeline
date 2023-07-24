@@ -37,7 +37,10 @@ Log onto server
 Update file paths in files  
 Use sftp to upload files to server  
 run in server: `docker run -it cyberbotics/webots:latest`  
-Transfer files to docker container `docker cp FOLDER_FILE_PATH DOCKER_CONTAINER_ID:/usr/local/webots/COPIED_FOLDER`  
+
+Transfer files to docker container  
+`docker cp FOLDER_FILE_PATH DOCKER_CONTAINER_ID:/usr/local/webots/COPIED_FOLDER`  
+
 Run the simulation headlessly using 
 `xvfb-run webots --stdout --stderr --batch --mode=fast obstacleTesting2.wbt`  
 (Make sure you are in the worlds folder)
