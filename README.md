@@ -44,3 +44,8 @@ Transfer files to docker container
 Run the simulation headlessly using 
 `xvfb-run webots --stdout --stderr --batch --mode=fast obstacleTesting2.wbt`  
 (Make sure you are in the worlds folder)
+
+# Running via docker-compose
+Build the image using `docker-compose build`.  
+Run using `docker-compose up`.  
+To run a bash shell inside the image, run `docker-compose run -ti webots bash`.  
