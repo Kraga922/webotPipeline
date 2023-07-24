@@ -8,7 +8,7 @@ e.g. using conda,
 ```
 conda create -n webots python=3.10
 conda activate webots
-conda install pil pandas
+pip install pillow pandas
 ```
 Find out the path to python for this environment:
 ```
