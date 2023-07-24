@@ -1,13 +1,14 @@
 
 from controller import Supervisor
 import sys
-sys.path.append('/Users/krishivagarwal/webbotTest/PipelineCode')
+basedir = '../../..'
+sys.path.append(basedir)
 from json2overcome2 import json2overcome2 
 from json2proto2 import json2proto2 
 
 def pipeline1():
     json2overcome = json2overcome2()
-    json_file_path = "/Users/krishivagarwal/webbotTest/PipelineCode/obstacleTesting1/controllers/CarSup/WebotSim2.json" 
+    json_file_path = f"{basedir}/obstacleTesting1/controllers/CarSup/WebotSim2.json" 
     #json2overcome.add_brackets_to_json_file(json_file_path)
     file = json2overcome.openData(json_file_path)
     dfTranslation= json2overcome.getTranslationDF(file)
@@ -17,8 +18,8 @@ def pipeline1():
 
 def pipeline2():
     json2proto = json2proto2()
-    json_file_path = '/Users/krishivagarwal/webbotTest/PipelineCode/jsonWheelShapes/ConvJsonSq.json'
-    proto_file_path = '/Users/krishivagarwal/webbotTest/PipelineCode/obstacleTesting1/protos/WheelP2.proto'
+    json_file_path = f"{basedir}/jsonWheelShapes/ConvJsonSq.json"
+    proto_file_path = f"{basedir}/obstacleTesting1/protos/WheelP2.proto"
     json2proto.convert_json_to_proto(json_file_path, proto_file_path)
 
  

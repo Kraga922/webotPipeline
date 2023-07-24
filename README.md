@@ -1,12 +1,25 @@
-How to install Webots and Webot world on a local mac machine
+# Installing
 
 curl -L -O https://github.com/cyberbotics/webots/releases/download/R2023b/webots-R2023b.dmg open webots-R2023b.dmg
 Drag and Drop to the applications folder
-Install PipelineCode git folder
-How to run world
 
+# Create an environment for webots
+e.g. using conda,
+```
+conda create -n webots python=3.10
+conda activate webots
+conda install pil pandas
+```
+Find out the path to python for this environment:
+```
+which python
+```
+In the Webots Preferences, change the "Python command" to the python path from the previous step.
+
+# Running
+Start Webots
 Press command+shift+O
-find obstacleTesting2.wbt file and run it
+In the webotsPipeline repo, find obstacleTesting1/worlds/obstacleTesting2.wbt file and run it
 Press play button to start
 At the end of the simulation, in webots console, time and box output will be printed
 How to use the pipeline
@@ -18,8 +31,8 @@ Use Car4wA proto for the simulations. Other Protos are cars with different hard 
 On line 12 of the Car4wA proto code file there is a 'controller' attribute. Change the name to 'CarCam' if image export is desired. The simulation takes longer if so. Use 'CarSup' if the full integration is desired (files not adjusted for servers). Use CarCon for a basic run.
 json2overcome3 and json2proto3 are independent classes and can be used to run the individual parts of the pipeline.
 CarSup controller implement an end to end pipeline.
-How to create a Docker container to run Webots headlessly on a server
 
+# Running via Docker
 Log onto server
 Update file paths in files
 Use sftp to upload files to server
