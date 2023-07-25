@@ -1,9 +1,13 @@
 version: '2.1'
 services:
-  webots:
+  car:
     build: .
     image: sricsl/trinity-webots:0.0.1
+    tty: true
+    stdin_open: true
+    environment: 
+      WEBOTS_HEADLESS: 'True'
     volumes:
       - .:/opt/pipeline:rw
     working_dir: /opt/pipeline/obstacleTesting1/worlds
-    command: xvfb-run webots --stdout --stderr --batch --mode=fast obstacleTesting2.wbt
+    command: bash -c "xvfb-run -a webots --stdout --stderr --batch --mode=realtime obstacleTesting2.wbt"
