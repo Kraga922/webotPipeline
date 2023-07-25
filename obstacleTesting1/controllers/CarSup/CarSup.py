@@ -1,6 +1,7 @@
 
 from controller import Supervisor
 import sys
+import os
 basedir = '../../..'
 sys.path.append(basedir)
 from json2overcome2 import json2overcome2 
@@ -24,6 +25,8 @@ def pipeline2():
 
  
 def run():
+    headless = bool(os.getenv('WEBOTS_HEADLESS'))
+
     TIME_STEP = 64
     supervisor = Supervisor()
     
@@ -65,6 +68,11 @@ def run():
             #supervisor.SIMULATION_MODE_PAUSE
             #json2overcome
             pipeline1()
+            
+            if headless:
+                print('Headless mode, quitting simulation...')
+                supervisor.simulationQuit(0)
+
             break 
             #json2proto
             pipeline2()
