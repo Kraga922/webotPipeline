@@ -38,6 +38,7 @@ def run():
         
         print(f'Headless: {headless}')
         print(f'Results dir: {results_dir}')
+        print(f'Timeout: {timeout}')
 
         TIME_STEP = 64
         supervisor = Supervisor()
