@@ -30,7 +30,12 @@ def run():
         results_dir = os.getenv('WEBOTS_RESULTS_DIR')
         if results_dir is None:
             results_dir = f"{basedir}/obstacleTesting1/controllers/CarSup2/"
-
+        timeout = os.getenv('WEBOTS_TIMEOUT')
+        if timeout is None:
+            timeout = 172  # magic number (?) from original version
+        else:
+            timeout = int(timeout)
+        
         print(f'Headless: {headless}')
         print(f'Results dir: {results_dir}')
 
@@ -65,7 +70,7 @@ def run():
         while supervisor.step(TIME_STEP) != -1:
             leftSpeed = 4.0
             rightSpeed = 4.0
-            if time > 172:
+            if time > timeout:
                 leftSpeed = 0
                 rightSpeed = 0
                 
