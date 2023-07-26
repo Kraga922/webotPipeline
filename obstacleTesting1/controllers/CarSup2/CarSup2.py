@@ -7,24 +7,21 @@ sys.path.append(basedir)
 from json2overcome2 import json2overcome2 
 from json2proto2 import json2proto2 
 
-def pipeline1():
+def save_results(results_dir):
     json2overcome = json2overcome2()
-    json_file_path = f"{basedir}/obstacleTesting1/controllers/CarSup/WebotSim2.json" 
+    json_file_path = os.path.join(results_dir,'WebotSim2.json') 
     #json2overcome.add_brackets_to_json_file(json_file_path)
     file = json2overcome.openData(json_file_path)
     dfTranslation= json2overcome.getTranslationDF(file)
     dfTranslation['translation'] = json2overcome.formatTranslationDF(dfTranslation)
     #print(dfTranslation['translation'])
-    print(json2overcome.obstaclePassed(dfTranslation, 'translation')) 
-
-def pipeline2():
-    json2proto = json2proto2()
-    json_file_path = f"{basedir}/jsonWheelShapes/ConvJsonSq.json"
-    proto_file_path = f"{basedir}/obstacleTesting1/protos/WheelP2.proto"
-    json2proto.convert_json_to_proto(json_file_path, proto_file_path)
+    print(json2overcome.obstaclePassed(dfTranslation, 'translation'))
 
  
 def run():
+    headless = bool(os.getenv('WEBOTS_HEADLESS'))
+    results_dir = bool(os.getenv('WEBOTS_RESULTS_DIR'))
+
     TIME_STEP = 64
     supervisor = Supervisor()
     
@@ -65,14 +62,12 @@ def run():
             supervisor.simulationSetMode(supervisor.SIMULATION_MODE_PAUSE)
             #supervisor.SIMULATION_MODE_PAUSE
             #json2overcome
-            pipeline1()
-            break 
-            #json2proto
-            pipeline2()
-            break
+            save_results(results_dir)
             
             supervisor.simulationReset()
-            supervisor.SIMULATION_MODE_PAUSE
+            if headless:
+                print('Headless mode, quitting simulation...')
+                supervisor.simulationQuit(0)
 
         time += 1
         wheels[0].setVelocity(leftSpeed)
@@ -84,11 +79,3 @@ def run():
         #     supervisor.simulationResetPhysics()
         #     supervisor.step(TIME_STEP) == -1
     #supervisor.worldRestart()
-if __name__ == "__main__":
-    #supervisor = Supervisor()
-    pipeline2()
-    run()
-
-    #supervisor.simulationReset()
-
-

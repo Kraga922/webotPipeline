@@ -9,7 +9,7 @@ PROTO Car4wA [
   field SFVec3f    translation  0 0 0.04
   field SFRotation rotation     0 0 1 0
   field SFFloat    bodyMass     2
-  field SFString   controller   "CarSup"
+  field SFString   controller   "CarSup2"
   field  SFString  name         "Car4wA" 
   field SFFloat    colorNoise    0.0     
 ]
