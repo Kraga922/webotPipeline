@@ -1,0 +1,104 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/solids/protos/SolidBox.proto"
+EXTERNPROTO "../protos/CarConvOutput.proto"
+
+WorldInfo {
+  basicTimeStep 16
+  contactProperties [
+    ContactProperties {
+      material2 "dumbbell"
+    }
+    ContactProperties {
+      material1 "floor"
+      material2 "FL_wheel"
+    }
+    ContactProperties {
+      material1 "floor"
+      material2 "FR_wheel"
+    }
+    ContactProperties {
+      material1 "floor"
+      material2 "BL_wheel"
+    }
+    ContactProperties {
+      material1 "floor"
+      material2 "BR_wheel"
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.18595843539530355 -0.1745648253457592 -0.9669263581355796 4.615679034714559
+  position 0.6225536245771496 -4.968172710637755 2.273464023778221
+}
+SolidBox {
+  translation -0.2 0 0
+  size 0.2 0.3 0.03
+}
+SolidBox {
+  translation 0.3 0 0
+  name "box(1)"
+  size 0.2 0.3 0.05
+}
+SolidBox {
+  translation 0.8 0 0
+  name "box(2)"
+  size 0.2 0.3 0.08
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  contactMaterial "floor"
+  size 3 1
+}
+DEF WALL_1 Solid {
+  translation 1.5 0 0.05
+  children [
+    DEF WALL_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColor 0.12549 0.368627 0.729412
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.02 0.98 0.1
+      }
+    }
+  ]
+  name "wall 1"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_2 Solid {
+  translation -1.5 0 0.05
+  children [
+    USE WALL_SHAPE
+  ]
+  name "wall 2"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_3 Solid {
+  translation 0 -0.5 0.05
+  rotation 0 0 1 1.5708
+  children [
+    USE WALL_SHAPE
+  ]
+  name "wall 3"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_4 Solid {
+  translation 0 0.5 0.05
+  rotation 0 0 1 1.5708
+  children [
+    USE WALL_SHAPE
+  ]
+  name "wall 4"
+  boundingObject USE WALL_SHAPE
+}
+CarConvOutput {
+  translation -1.2 0 0.04
+}
