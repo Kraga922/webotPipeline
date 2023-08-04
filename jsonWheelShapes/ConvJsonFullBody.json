@@ -1,0 +1,46 @@
+{
+    "robot_body": {
+      "Name": "Body", 
+      "Shape": "Box", 
+      "Dimensions": {
+        "size": "0.2 0.1 0.05"
+      }
+    },
+    "wheels": [
+      {
+        "Name": "FLWHEEL", 
+        "Anchor": "0.05 0.06 0",
+        "Shape": "Cylinder", 
+        "Dimensions": {
+          "height": "0.02",
+          "radius": "0.06"
+        }
+      },
+      {
+        "Name": "FRWHEEL", 
+        "Anchor": "0.05 -0.06 0",
+        "Shape": "Cylinder",
+        "Dimensions": {
+          "height": "0.02",
+          "radius": "0.06"
+        }
+      },
+      {
+        "Name": "BLWHEEL", 
+        "Anchor": "-0.05 0.06 0",
+        "Shape": "Box", 
+        "Dimensions": {
+            "size": "0.08 0.08 0.02"
+        }
+      },
+      {
+        "Name": "BRWHEEL", 
+        "Anchor": "-0.05 -0.06 0",
+        "Shape": "Box",
+        "Dimensions": {
+            "size": "0.08 0.08 0.02"
+        }
+      }
+    ]
+  }
+  
