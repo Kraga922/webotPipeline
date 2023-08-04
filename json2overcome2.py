@@ -38,10 +38,12 @@ class json2overcome2:
         for frame in data['frames']:
             time = frame['time']
             for update in frame['updates']:
+                #if update.get('id') == 224: # hard coded id, change it so the method accepts the id number and use supervisor id method to find id and pass it in
                 transition = update.get('translation', None)
                 if transition is not None:
-                    time_list.append(time)
-                    transition_list.append(transition)
+                    if time> 0:
+                        time_list.append(time)
+                        transition_list.append(transition)
 
         # Create a new DataFrame with 'time' and 'translation' columns
         new_df = pd.DataFrame({'time': time_list, 'translation': transition_list})
@@ -78,9 +80,13 @@ class json2overcome2:
                 result_3 = (3, df.loc[idx, 'time'])
             elif value >= 0.4: 
                 result_2 = (2, df.loc[idx, 'time'])
-            elif value >= -0.1 :
-                result_1 = (1, df.loc[idx, 'time'])
-            elif result_0:
-                result_0 = (0, df.loc[idx, 'time'])
 
-        return result_2 or result_2 or result_1 or result_0
+            #picking up the translation value of another id, messing up the method
+            elif value >= -0.1:
+                #print(value)
+                result_1 = (1, df.loc[idx, 'time'])
+            else:
+                #print('0')
+                result_0 = (0, df.loc[idx, 'time'])
+        print (f'the {value}')
+        return result_3 or result_2 or result_1 or result_0
