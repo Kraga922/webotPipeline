@@ -56,23 +56,3 @@ with open(output_proto_file, "w") as file:
     file.write(proto_output)
 
 print(f"Proto data has been written to '{output_proto_file}'.")
-
-
-        # endPoint BODY2 Solid {
-        #   translation 0.2 0 0
-        #   children [
-        #     DEF BODY2 Shape {
-        #       appearance PBRAppearance {
-        #         baseColor 0.305882 0.898039 0.25098
-        #         roughness 1
-        #         metalness 0
-        #       }
-        #       geometry Box {
-        #         size 0.2 0.1 0.05
-        #       }
-        #     }
-        #   ]
-        #   boundingObject USE BODY2
-        #   physics Physics {
-        #   }
-        # }
