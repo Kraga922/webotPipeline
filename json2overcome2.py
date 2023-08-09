@@ -72,7 +72,7 @@ class json2overcome2:
         result_0 = None
 
         # Traverse the column from bottom to top
-        for idx in range(len(df) - 1):
+        for idx in range(len(df) - 1, -1, -1):
             value = df.loc[idx, column_name]
 
             # Updates the relavent list
