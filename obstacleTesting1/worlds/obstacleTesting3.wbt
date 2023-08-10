@@ -100,5 +100,5 @@ DEF WALL_4 Solid {
   boundingObject USE WALL_SHAPE
 }
 Car4wMulti2 {
-  translation -1.2 0 0.1
+  translation -1.2 0 0.3
 }
