@@ -4,7 +4,7 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/solids/protos/SolidBox.proto"
-EXTERNPROTO "../protos/CarConvOutput.proto"
+EXTERNPROTO "../protos/Car4wMulti2.proto"
 
 WorldInfo {
   basicTimeStep 16
@@ -31,8 +31,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.18595843539530355 -0.1745648253457592 -0.9669263581355796 4.615679034714559
-  position 0.6225536245771496 -4.968172710637755 2.273464023778221
+  orientation 0.20251739331806096 -0.23705387199175826 -0.9501537597554265 4.818518376780744
+  position -0.5087400466533331 -5.286294585988461 2.6474048806044643
 }
 SolidBox {
   translation -0.2 0 0
@@ -99,6 +99,6 @@ DEF WALL_4 Solid {
   name "wall 4"
   boundingObject USE WALL_SHAPE
 }
-CarConvOutput {
+Car4wMulti2 {
   translation -1.2 0 0.04
 }

@@ -1,0 +1,399 @@
+#VRML_SIM R2023b utf8
+# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+# license url: https://cyberbotics.com/webots_assets_license
+# documentation url: https://webots.cloud/run?url=https://github.com/cyberbotics/webots/blob/released/projects/samples/tutorials/protos/FourWheelsRobot.proto
+# keywords: robot/wheeled
+
+PROTO Car4wMulti2 [
+  field SFVec3f    translation  0 0 0.04
+  field SFRotation rotation     0 0 1 0
+  field SFFloat    bodyMass     1
+  field SFString   controller   "CarSupMulti"
+  field  SFString  name         "Car4wMulti2" 
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    supervisor TRUE
+    children [
+      DEF BODY Shape {
+        appearance PBRAppearance {
+          baseColor 0.917647 0.145098 0.145098
+          roughness 1
+          metalness 0
+        }
+        geometry *BODY_GEOMETRY* {
+          *BODY_SIZE*
+        }
+      }
+      
+      
+      DEF BODY1 HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor *BODY1_ANCHOR* 
+        }
+        endPoint Solid {
+          translation *BODY1_ANCHOR* 
+          rotation 1 0 0 0
+          children [
+            DEF BODY1 Shape {
+              appearance PBRAppearance {
+                baseColor 0.5 0.3 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry *BODY1_GEOMETRY* {
+                 *BODY1_SIZE*
+              }
+            }
+            
+            DEF WHEEL1 HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL1_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor1"
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL1_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL1 Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL1_GEOMETRY* {
+                        *WHEEL1_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_1"
+                contactMaterial "wheel_1"
+                boundingObject USE WHEEL1
+                physics Physics {
+                }
+                }
+            }
+    
+            DEF WHEEL1SYM HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL1SYM_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor1SYM"
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL1SYM_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL1SYM Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL1SYM_GEOMETRY* {
+                        *WHEEL1SYM_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_1SYM"
+                contactMaterial "wheel_1SYM"
+                boundingObject USE WHEEL1SYM
+                physics Physics {
+                }
+                }
+            }
+    
+          ]
+          name "body_1"
+          contactMaterial "body_1"
+          boundingObject USE BODY1
+          physics Physics {
+          }
+        }
+      }
+    
+      DEF BODY2 HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor *BODY2_ANCHOR* 
+        }
+        endPoint Solid {
+          translation *BODY2_ANCHOR* 
+          rotation 1 0 0 0
+          children [
+            DEF BODY2 Shape {
+              appearance PBRAppearance {
+                baseColor 0.5 0.3 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry *BODY2_GEOMETRY* {
+                 *BODY2_SIZE*
+              }
+            }
+            
+            DEF WHEEL2 HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL2_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor2"
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL2_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL2 Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL2_GEOMETRY* {
+                        *WHEEL2_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_2"
+                contactMaterial "wheel_2"
+                boundingObject USE WHEEL2
+                physics Physics {
+                }
+                }
+            }
+    
+            DEF WHEEL2SYM HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL2SYM_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor2SYM"
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL2SYM_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL2SYM Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL2SYM_GEOMETRY* {
+                        *WHEEL2SYM_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_2SYM"
+                contactMaterial "wheel_2SYM"
+                boundingObject USE WHEEL2SYM
+                physics Physics {
+                }
+                }
+            }
+    
+          ]
+          name "body_2"
+          contactMaterial "body_2"
+          boundingObject USE BODY2
+          physics Physics {
+          }
+        }
+      }
+    
+            DEF WHEEL3 HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL3_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor3"
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL3_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL3 Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL3_GEOMETRY* {
+                        *WHEEL3_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_3"
+                contactMaterial "wheel_3"
+                boundingObject USE WHEEL3
+                physics Physics {
+                }
+                }
+            }
+    
+            DEF WHEEL3SYM HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL3SYM_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor3SYM"
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL3SYM_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL3SYM Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL3SYM_GEOMETRY* {
+                        *WHEEL3SYM_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_3SYM"
+                contactMaterial "wheel_3SYM"
+                boundingObject USE WHEEL3SYM
+                physics Physics {
+                }
+                }
+            }
+    
+            DEF WHEEL4 HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL4_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor4"
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL4_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL4 Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL4_GEOMETRY* {
+                        *WHEEL4_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_4"
+                contactMaterial "wheel_4"
+                boundingObject USE WHEEL4
+                physics Physics {
+                }
+                }
+            }
+    
+            DEF WHEEL4SYM HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL4SYM_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor4SYM"
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL4SYM_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL4SYM Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL4SYM_GEOMETRY* {
+                        *WHEEL4SYM_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_4SYM"
+                contactMaterial "wheel_4SYM"
+                boundingObject USE WHEEL4SYM
+                physics Physics {
+                }
+                }
+            }
+    
+
+      DEF DS_RIGHT DistanceSensor {
+        translation 0.1 -0.03 0
+        rotation 0 0 1 -0.3
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.184314 0.596078 0.847059
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.01 0.01 0.01
+            }
+          }
+        ]
+        name "ds_right"
+      }
+      DEF DS_LEFT DistanceSensor {
+        translation 0.1 0.03 0
+        rotation 0 0 1 0.3
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.184314 0.596078 0.847059
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.01 0.01 0.01
+            }
+          }
+        ]
+        name "ds_left"
+      }
+    ]
+    name IS name
+    boundingObject USE BODY
+    physics Physics {
+      density -1
+      mass IS bodyMass
+    }
+    controller "CarSupMulti"
+  }
+}

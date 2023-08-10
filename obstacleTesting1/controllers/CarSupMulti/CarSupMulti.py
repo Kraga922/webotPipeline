@@ -5,7 +5,7 @@ import os
 basedir = '../../..'
 sys.path.append(basedir)
 from json2overcome2 import json2overcome2 
-from json2proto2 import json2proto2 
+from InsertMultiSym import get_motors 
 import traceback
 import json
 
@@ -61,25 +61,32 @@ def run():
         for i in range(2):
             ds.append(supervisor.getDevice(dsNames[i]))
             ds[i].enable(TIME_STEP)
+        wheelsNames = get_motors("../../../jsonWheelShapes/ConvJsonMultiSym.json")
         wheels = []
-        wheelsNames = ['motor1', 'motor2', 'motor3', 'motor4']
-        for i in range(4):
+        for i in range(len(wheelsNames)): #need a way to find how many wheels there are
             wheels.append(supervisor.getDevice(wheelsNames[i]))
             wheels[i].setPosition(float('inf'))
             wheels[i].setVelocity(0.0)
+        
         #avoidObstacleCounter = 0
         time = 0
         #Main loop
         while supervisor.step(TIME_STEP) != -1: 
             leftSpeed = 4.0
             rightSpeed = 4.0
+
+            #body_position = body_node.getPosition()
+            #print("BODY position:", body_position)
+            #print(robot_body.getPosition())
             if time > timeout:
                 leftSpeed = 0
                 rightSpeed = 0
-
+                
+                #supervisor.movieStopRecording()
                 supervisor.animationStopRecording()
                 supervisor.simulationSetMode(supervisor.SIMULATION_MODE_PAUSE)
-
+                #supervisor.SIMULATION_MODE_PAUSE
+                #json2overcome
                 process_results(results_dir)
                 
                 supervisor.simulationReset()
@@ -88,10 +95,16 @@ def run():
                     supervisor.simulationQuit(0)
 
             time += 1
-            wheels[0].setVelocity(leftSpeed)
-            wheels[1].setVelocity(rightSpeed)
-            wheels[2].setVelocity(leftSpeed)
-            wheels[3].setVelocity(rightSpeed)
+
+            for i in range (len(wheels)):
+                wheels[i].setVelocity(leftSpeed)     
+            # wheels[0].setVelocity(leftSpeed)
+            # wheels[1].setVelocity(rightSpeed)
+            # wheels[2].setVelocity(leftSpeed)
+            # wheels[3].setVelocity(rightSpeed)
+            # wheels[4].setVelocity(leftSpeed)
+            # wheels[5].setVelocity(rightSpeed)
+
             # if supervisor.step(TIME_STEP) == 10:
             #     supervisor.animationStopRecording()
             #     supervisor.simulationResetPhysics()
@@ -108,3 +121,4 @@ if __name__ == "__main__":
     #supervisor = Supervisor()
     #pipeline2()
     run()
+    

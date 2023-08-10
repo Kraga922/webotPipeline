@@ -3,15 +3,13 @@
 # license url: https://cyberbotics.com/webots_assets_license
 # documentation url: https://webots.cloud/run?url=https://github.com/cyberbotics/webots/blob/released/projects/samples/tutorials/protos/FourWheelsRobot.proto
 # keywords: robot/wheeled
-EXTERNPROTO "WheelP2.proto"
 
-PROTO Car4wA [
+PROTO Car4wT [
   field SFVec3f    translation  0 0 0.04
   field SFRotation rotation     0 0 1 0
-  field SFFloat    bodyMass     2
+  field SFFloat    bodyMass     1
   field SFString   controller   "CarSup2"
-  field  SFString  name         "Car4wA" 
-  field SFFloat    colorNoise    0.0     
+  field  SFString  name         "Car4wDS" 
 ]
 {
   Robot {
@@ -40,12 +38,26 @@ PROTO Car4wA [
             name "motor1"
           }
         ]
-        endPoint WheelP2 {
-            translation 0.05 0.06 0
-            rotation 1 0 0 1.5708
-            name "front left wheel" 
+        endPoint Solid {
+          translation 0.05 0.06 0
+          rotation 1 0 0 1.5708
+          children [
+            DEF WHEELFL Shape {
+              appearance PBRAppearance {
+                baseColor 0.305882 0.898039 0.25098
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.02
+                radius 0.06
+              }
+            }
+          ]
+          boundingObject USE WHEELFL
+          physics Physics {
+          }
         }
-        
       }
       DEF WHEEL2 HingeJoint {
         jointParameters HingeJointParameters {
@@ -57,13 +69,27 @@ PROTO Car4wA [
             name "motor2"
           }
         ]
-        endPoint WheelP2 {
+        endPoint Solid {
           translation 0.05 -0.06 0
           rotation 1 0 0 1.5708
-          name "front right wheel" 
-
+          children [
+            DEF WHEELFR Shape {
+              appearance PBRAppearance {
+                baseColor 0.305882 0.898039 0.25098
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.02
+                radius 0.06
+              }
+            }
+          ]
+          name "solid(1)"
+          boundingObject USE WHEELFR
+          physics Physics {
+          }
         }
-        
       }
       DEF WHEEL3 HingeJoint {
         jointParameters HingeJointParameters {
@@ -75,11 +101,25 @@ PROTO Car4wA [
             name "motor3"
           }
         ]
-        endPoint WheelP2 {
-            translation -0.05 0.06 0
-            rotation 1 0 0 1.5708
-            name "back left wheel"
-
+        endPoint Solid {
+          translation -0.05 0.06 0
+          rotation 1 0 0 1.5708
+          children [
+            DEF WHEELBL Shape {
+              appearance PBRAppearance {
+                baseColor 0.305882 0.898039 0.25098
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.08 0.08 0.02
+              }
+            }
+          ]
+          name "solid(2)"
+          boundingObject USE WHEELBL
+          physics Physics {
+          }
         }
       }
       DEF WHEEL4 HingeJoint {
@@ -92,11 +132,25 @@ PROTO Car4wA [
             name "motor4"
           }
         ]
-        endPoint WheelP2 {
+        endPoint Solid {
           translation -0.05 -0.06 0
           rotation 1 0 0 1.5708
-          name "back right wheel"
-
+          children [
+            DEF WHEELBR Shape {
+              appearance PBRAppearance {
+                baseColor 0.305882 0.898039 0.25098
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.08 0.08 0.02
+              }
+            }
+          ]
+          name "solid(3)"
+          boundingObject USE WHEELBR
+          physics Physics {
+          }
         }
       }
       DEF DS_RIGHT DistanceSensor {
@@ -133,20 +187,13 @@ PROTO Car4wA [
         ]
         name "ds_left"
       }
-      Camera {
-        translation 0.1 0 0.034000
-        fieldOfView 1.04
-        width 640
-        height 480
-        noise IS colorNoise
-        name "camera"
-      }
     ]
     name IS name
     boundingObject USE BODY
     physics Physics {
+      density -1
       mass IS bodyMass
     }
-    controller "CarSup"
+    controller "CarSup2"
   }
 }

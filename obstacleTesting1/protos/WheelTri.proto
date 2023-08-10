@@ -1,15 +1,17 @@
-#VRML_SIM R2023b utf8 
-PROTO WheelP2 [
+#VRML_SIM R2023b utf8
+
+PROTO WheelTri [
   field SFVec3f    translation 0 0 0
   field SFRotation rotation    0 1 0 0
   field SFFloat    mass        2
-  field  SFString  name        "WheelP2"
+  field SFString   name        "TriangleWheel"
 ]
 {
   Solid {
     translation IS translation
-    name IS name
     rotation IS rotation
+    name IS name
+    mass IS mass
     children [
       DEF WHEEL Shape {
         appearance PBRAppearance {
@@ -17,15 +19,22 @@ PROTO WheelP2 [
           roughness 1
           metalness 0
         }
-        geometry Box {
-          size   0.08 0.08 0.02
+        geometry IndexedFaceSet {
+          coord Coordinate {
+            point [
+              0 0 0,
+              0.05 0 0,
+              0.025 0.05 0
+            ]
+          }
+          coordIndex [
+            0 1 2 -1
+          ]
         }
-
       }
     ]
     boundingObject USE WHEEL
     physics Physics {
-      density -1
       mass IS mass
     }
   }

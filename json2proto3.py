@@ -21,6 +21,7 @@ class json2proto3:
         proto_code += '  Solid {\n'
         proto_code += '    translation IS translation\n'
         proto_code += '    rotation IS rotation\n'
+        proto_code += '    name IS name\n'
         proto_code += '    mass IS mass\n'
         proto_code += '    children [\n'
         proto_code += '      DEF WHEEL Shape {\n'
@@ -52,7 +53,7 @@ class json2proto3:
 
     # Usage example
     if __name__ == "__main__":
-        json_file_path = 'jsonWheelShapes/ConvJsonSq.json'
+        json_file_path = 'jsonWheelShapes/ConvJsonCy.json'
         proto_file_path = 'obstacleTesting1/protos/WheelP2.proto'
         convert_json_to_proto(json_file_path, proto_file_path)
 

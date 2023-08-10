@@ -20,6 +20,7 @@ class json2proto2:
         proto_code += '{\n'
         proto_code += '  Solid {\n'
         proto_code += '    translation IS translation\n'
+        proto_code += '    name IS name\n'
         proto_code += '    rotation IS rotation\n'
         proto_code += '    children [\n'
         proto_code += '      DEF WHEEL Shape {\n'

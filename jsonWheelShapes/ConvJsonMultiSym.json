@@ -1,0 +1,72 @@
+{
+    "bodies":[ 
+    {
+      "Name": "BODY", 
+      "Anchor": "0",
+      "Shape": "Box", 
+      "Dimensions": {
+        "size": "0.2 0.1 0.05"
+      }
+    },
+    {
+        "Name": "BODY1",
+        "Anchor": "0.2 0 0", 
+        "Shape": "Cylinder", 
+        "Dimensions": {
+            "height": "0.05",
+            "radius": "0.1"
+        }
+      },
+      {
+        "Name": "BODY2", 
+        "Anchor": "0.32 0 0",
+        "Shape": "Box", 
+        "Dimensions": {
+          "size": "0.1 0.1 0.05"
+        }
+      }
+    ],   
+    "wheels": [
+      {
+        "Name": "WHEEL1", 
+        "Symmetrical": "True",
+        "BodyNum": "1",
+        "Anchor": "0.05 0.06 0",
+        "Shape": "Box", 
+        "Dimensions": {
+            "size": "0.08 0.08 0.02"
+        }
+      },
+      {
+        "Name": "WHEEL2", 
+        "Symmetrical": "True",
+        "BodyNum": "2",
+        "Anchor": "0.05 -0.06 0",
+        "Shape": "Box",
+        "Dimensions": {
+            "size": "0.08 0.08 0.02"
+        }
+      },
+      {
+        "Name": "WHEEL3",
+        "Symmetrical": "True",
+        "BodyNum": "0", 
+        "Anchor": "-0.05 0.06 0",
+        "Shape": "Box", 
+        "Dimensions": {
+            "size": "0.08 0.08 0.02"
+        }
+      },
+      {
+        "Name": "WHEEL4",
+        "Symmetrical": "True",
+        "BodyNum": "0", 
+        "Anchor": "0.05 0.06 0",
+        "Shape": "Box", 
+        "Dimensions": {
+            "size": "0.08 0.08 0.02"
+        }
+      }
+    ]
+  }
+  
