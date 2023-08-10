@@ -46,7 +46,7 @@ def create_proto_from_template(template, json_data):
             template = template.replace(f"*{wheel_name}_GEOMETRY*", wheel_shape)
             template = template.replace(f"*{wheel_name}_ANCHOR*", wheel_anchor)
             template = template.replace(f"*{wheel_name}_SIZE*", generate_geometry_code(wheel["Dimensions"]))
-            if wheel["Symmetrical"] == "True":
+            if wheel["Symmetrical"]:
                 template = template.replace(f"*{wheel_name}SYM_GEOMETRY*", wheel_shape)
 
                 split_values = wheel_anchor.split()
@@ -163,13 +163,13 @@ def create_template(json_data):
             motors.append(f"motor{wheel['WheelNum']}")
             if body["Name"] == "BODY":
                 bodies_wheels_code += insert_wheel(wheel["WheelNum"])
-                if wheel["Symmetrical"] == "True":
+                if wheel["Symmetrical"]:
                     motors.append(f'motor{wheel["WheelNum"]}SYM')
                     bodies_wheels_code += insert_wheel(f'{wheel["WheelNum"]}SYM') # naming needs to be matched in the controller, maybe import an array with all the names
             else:
                 #wheel_codes[num] += insert_wheel(j)
                 wheel_code += insert_wheel(wheel["WheelNum"])
-                if wheel["Symmetrical"] == "True":
+                if wheel["Symmetrical"]:
                     motors.append(f'motor{wheel["WheelNum"]}SYM')
                     wheel_code += insert_wheel(f'{wheel["WheelNum"]}SYM')
                     #wheel_codes[num] += insert_wheel(f'{j}SYM')

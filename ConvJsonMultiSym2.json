@@ -10,7 +10,7 @@
       "wheels": [
         {
           "Name": "WHEEL1",
-          "Symmetrical": "True",
+          "Symmetrical": true,
           "WheelNum": "1",
           "Anchor": "0.05 0.06 0",
           "Shape": "Box",
@@ -20,7 +20,7 @@
         },
         {
           "Name": "WHEEL2",
-          "Symmetrical": "True",
+          "Symmetrical": true,
           "WheelNum": "2",
           "Anchor": "-0.05 0.06 0",
           "Shape": "Box",
@@ -41,7 +41,7 @@
         "wheels": [
           {
             "Name": "WHEEL3",
-            "Symmetrical": "True",
+            "Symmetrical": true,
             "WheelNum": "3",
             "Anchor": "-0.05 0.06 0",
             "Shape": "Box",
@@ -61,7 +61,7 @@
         "wheels": [
           {
             "Name": "WHEEL4",
-            "Symmetrical": "True",
+            "Symmetrical": true,
             "WheelNum": "4",
             "Anchor": "0.05 0.06 0",
             "Shape": "Box",
