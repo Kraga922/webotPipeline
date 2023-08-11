@@ -5,7 +5,7 @@ import os
 basedir = '../../..'
 sys.path.append(basedir)
 from json2overcome2 import json2overcome2 
-from InsertMultiSym import get_motors 
+from InsertMultiSym2 import get_motors 
 import traceback
 import json
 
@@ -16,7 +16,7 @@ def process_results(results_dir):
     file = json2overcome.openData(json_file_path)
     #print(file)
     dfTranslation= json2overcome.getTranslationDF(file)
-    print(dfTranslation)
+    #print(dfTranslation)
     dfTranslation['translation'] = json2overcome.formatTranslationDF(dfTranslation)
     #print(dfTranslation['translation'])
     (num_obs, time) = json2overcome.obstaclePassed(dfTranslation, 'translation')
@@ -34,17 +34,17 @@ def run():
             results_dir = f"{basedir}/obstacleTesting1/controllers/CarSup2/"
         timeout = os.getenv('WEBOTS_TIMEOUT')
         if timeout is None:
-            timeout = 250  # magic number (?) from original version
+            timeout = 150  # magic number (?) from original version
         else:
             timeout = int(timeout)
         
-        print(f'Headless: {headless}')
-        print(f'Results dir: {results_dir}')
-        print(f'Timeout: {timeout}')
+        #print(f'Headless: {headless}')
+        #print(f'Results dir: {results_dir}')
+        #print(f'Timeout: {timeout}')
 
         TIME_STEP = 64
         supervisor = Supervisor()
-        
+        supervisor.silent = True
         ds = []
         dsNames = ['ds_right', 'ds_left']
         timestep = int(supervisor.getBasicTimeStep())
@@ -61,7 +61,7 @@ def run():
         for i in range(2):
             ds.append(supervisor.getDevice(dsNames[i]))
             ds[i].enable(TIME_STEP)
-        wheelsNames = get_motors("../../../jsonWheelShapes/ConvJsonMultiSym.json")
+        wheelsNames = get_motors("../../../jsonWheelShapes/ConvJsonMultiSym2.json")
         wheels = []
         for i in range(len(wheelsNames)): #need a way to find how many wheels there are
             wheels.append(supervisor.getDevice(wheelsNames[i]))
@@ -121,4 +121,3 @@ if __name__ == "__main__":
     #supervisor = Supervisor()
     #pipeline2()
     run()
-    
