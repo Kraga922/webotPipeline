@@ -1,5 +1,5 @@
 import json
-
+import os
 
 def read_text_file(file_path):
     with open(file_path, "r") as file:
@@ -191,41 +191,41 @@ def create_template(json_data):
 
 
 
-def main():
-    
-    json_file_path = "jsonWheelShapes/ConvJsonMultiSym2.json"
+def main(pipeline_dir):
+   
+    json_file_path = os.path.join(pipeline_dir, "jsonWheelShapes/ConvJsonMultiSym2.json")
     json_data = read_text_file(json_file_path)
-    
+   
     get_motors(json_file_path)
-    #Modifies the template 
-    with open("Car4wMultiTemp.proto", "r") as file:
+    #Modifies the template
+    with open(os.path.join(pipeline_dir, "Car4wMultiTemp.proto"), "r") as file:
         content = file.read()
-
+ 
     #num_bodies, num_wheels = num_wheels_bodies(json_data)
     #modified_content = content.replace("**InsertBodiesAndWheels**", create_template(num_bodies-1,num_wheels, json_data))
     modified_content = content.replace("**InsertBodiesAndWheels**", create_template(json_data)[0])
-
-    with open("Car4wMultiTemp2.proto", "w") as file:
+ 
+    with open(os.path.join(pipeline_dir, "Car4wMultiTemp2.proto"), "w") as file:
         file.write(modified_content)
-
-
+ 
+ 
         # Read JSON data from file
-
-
-    template_path = "Car4wMultiTemp2.proto"
+ 
+ 
+    template_path = os.path.join(pipeline_dir, "Car4wMultiTemp2.proto")
     template_proto = read_text_file(template_path)
-
+ 
     # Convert JSON to Proto
     proto_output = create_proto_from_template(template_proto, json_data)
-
+ 
     # Write the output into a new Proto file
-    output_proto_file = "obstacleTesting1/protos/Car4wMulti2.proto"
+    output_proto_file = os.path.join(pipeline_dir, "obstacleTesting1/protos/Car4wMulti2.proto")
     with open(output_proto_file, "w") as file:
         file.write(proto_output)
-
-    print(f"Proto data has been written to '{output_proto_file}'.")
-
-
-
+ 
+    #print(f"Proto data has been written to '{output_proto_file}'.")
+ 
+ 
+ 
 if __name__ == "__main__":
-    main()
+    main('.')
