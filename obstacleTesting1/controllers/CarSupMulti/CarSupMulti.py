@@ -33,11 +33,11 @@ def run():
         if results_dir is None:
             results_dir = f"{basedir}/obstacleTesting1/controllers/CarSup2/"
         timeout = os.getenv('WEBOTS_TIMEOUT')
-        ms = 3000
         if timeout is None:
-            timeout = ms/65  # magic number (?) from original version
+            timeout = 5000  # magic number (?) from original version
         else:
             timeout = int(timeout)
+        timeout = int(timeout/65)
         
         #print(f'Headless: {headless}')
         #print(f'Results dir: {results_dir}')
