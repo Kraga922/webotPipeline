@@ -198,7 +198,7 @@ def main(pipeline_dir):
     json_file_path = os.path.join(pipeline_dir, "jsonWheelShapes/ConvJsonMultiSym2.json")
     json_data = read_text_file(json_file_path)
    
-    print(get_motors(json_file_path))
+    get_motors(json_file_path)
     #Modifies the template
     with open(os.path.join(pipeline_dir, "Car4wMultiTemp.proto"), "r") as file:
         content = file.read()
@@ -232,83 +232,3 @@ def main(pipeline_dir):
 if __name__ == "__main__":
     main('.')
 
-
-# {
-#     "bodies":[
-#     {
-#       "Name": "BODY",
-#       "Rigid": true,
-#       "Anchor": "0",
-#       "Shape": "Box",
-#       "Dimensions": {
-#         "size": "0.2 0.1 0.05"
-#       },
-#       "wheels": [
-#         {
-#           "Name": "WHEEL1",
-#           "Symmetrical": true,
-#           "WheelNum": "1",
-#           "Anchor": "0.05 0.06 0",
-#           "Shape": "Box",
-#           "Dimensions": {
-#               "size": "0.08 0.08 0.02"
-#           }
-#         },
-#         {
-#           "Name": "WHEEL2",
-#           "Symmetrical": true,
-#           "WheelNum": "2",
-#           "Anchor": "-0.05 0.06 0",
-#           "Shape": "Box",
-#           "Dimensions": {
-#               "size": "0.08 0.08 0.02"
-#           }
-#         }
-#       ]
-#     },
-#     {
-#         "Name": "BODY1",
-#         "Rigid": true,
-#         "Anchor": "0.2 0 0",
-#         "Shape": "Cylinder",
-#         "Dimensions": {
-#             "height": "0.05",
-#             "radius": "0.1"
-#         },
-#         "wheels": [
-#           {
-#             "Name": "WHEEL3",
-#             "Symmetrical": true,
-#             "WheelNum": "3",
-#             "Anchor": "-0.05 0.06 0",
-#             "Shape": "Box",
-#             "Dimensions": {
-#                 "size": "0.08 0.08 0.02"
-#             }
-#           }
-#         ]
-#       },
-#       {
-#         "Name": "BODY2",
-#         "Rigid": true,
-#         "Anchor": "0.35 0 0",
-#         "Shape": "Box",
-#         "Dimensions": {
-#           "size": "0.1 0.1 0.05"
-#         },
-#         "wheels": [
-#           {
-#             "Name": "WHEEL4",
-#             "Symmetrical": true,
-#             "WheelNum": "4",
-#             "Anchor": "0.05 0.06 0",
-#             "Shape": "Box",
-#             "Dimensions": {
-#                 "size": "0.08 0.08 0.02"
-#             }
-#           }   
-#         ]
-#       }
-#     ]
-#   }
- 
