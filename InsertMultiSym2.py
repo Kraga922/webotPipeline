@@ -34,6 +34,10 @@ def create_proto_from_template(template, json_data):
         template = template.replace(f"*{body_name}_GEOMETRY*", body_shape)
         template = template.replace(f"*{body_name}_ANCHOR*", body_anchor)
         template = template.replace(f"*{body_name}_SIZE*", generate_geometry_code(body["Dimensions"]))
+        if body["Rigid"]:
+            template = template.replace(f"*{body_name}_RIGID*", '.001')
+        else: 
+            template = template.replace(f"*{body_name}_RIGID*", '.5')
 
     # Replace the wheel geometries and sizes
     for body in json_obj["bodies"]:
@@ -111,6 +115,8 @@ def insert_body(body_number):
         jointParameters HingeJointParameters {{
           axis 0 1 0
           anchor *BODY{body_number}_ANCHOR* 
+          minStop -*BODY{body_number}_RIGID*     
+          maxStop *BODY{body_number}_RIGID* 
         }}
         endPoint Solid {{
           translation *BODY{body_number}_ANCHOR* 
