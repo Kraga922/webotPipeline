@@ -32,9 +32,10 @@ def run():
         results_dir = os.getenv('WEBOTS_RESULTS_DIR')
         if results_dir is None:
             results_dir = f"{basedir}/obstacleTesting1/controllers/CarSup2/"
-        timeout = os.getenv('WEBOTS_TIMEOUT')
+        #timeout = os.getenv('WEBOTS_TIMEOUT')
+        ms = 3000
         if timeout is None:
-            timeout = 150  # magic number (?) from original version
+            timeout = ms/65  # magic number (?) from original version
         else:
             timeout = int(timeout)
         
@@ -121,3 +122,4 @@ if __name__ == "__main__":
     #supervisor = Supervisor()
     #pipeline2()
     run()
+    
