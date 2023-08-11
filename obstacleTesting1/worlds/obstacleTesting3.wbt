@@ -54,10 +54,10 @@ TexturedBackgroundLight {
 }
 Floor {
   contactMaterial "floor"
-  size 3 1
+  size 6 2
 }
 DEF WALL_1 Solid {
-  translation 1.5 0 0.05
+  translation 3 0 0.05
   children [
     DEF WALL_SHAPE Shape {
       appearance PBRAppearance {
@@ -100,5 +100,5 @@ DEF WALL_4 Solid {
   boundingObject USE WALL_SHAPE
 }
 Car4wMulti2 {
-  translation -1.2 0 0.3
+  translation -1.2 0 0.1
 }
