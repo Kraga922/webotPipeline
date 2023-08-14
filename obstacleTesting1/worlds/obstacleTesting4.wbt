@@ -1,0 +1,112 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/solids/protos/SolidBox.proto"
+EXTERNPROTO "../protos/Car4wMulti2.proto"
+
+WorldInfo {
+  basicTimeStep 16
+  contactProperties [
+    ContactProperties {
+      material2 "dumbbell"
+    }
+    ContactProperties {
+      material1 "floor"
+      material2 "FL_wheel"
+    }
+    ContactProperties {
+      material1 "floor"
+      material2 "FR_wheel"
+    }
+    ContactProperties {
+      material1 "floor"
+      material2 "BL_wheel"
+    }
+    ContactProperties {
+      material1 "floor"
+      material2 "BR_wheel"
+    }
+  ]
+}
+ElevationGrid {
+  MFFloat height         [ ]   
+  SFInt32 xDimension     1      
+  SFFloat xSpacing       1      
+  SFInt32 yDimension     1      
+  SFFloat ySpacing       1      
+  SFFloat thickness      1      
+}
+Viewpoint {
+  orientation 0.20251739331806096 -0.23705387199175826 -0.9501537597554265 4.818518376780744
+  position -0.5087400466533331 -5.286294585988461 2.6474048806044643
+}
+SolidBox {
+  translation -0.2 0 0
+  size 0.2 0.3 0.03
+}
+SolidBox {
+  translation 0.3 0 0
+  name "box(1)"
+  size 0.2 0.3 0.05
+}
+SolidBox {
+  translation 0.8 0 0
+  name "box(2)"
+  size 0.2 0.3 0.08
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  contactMaterial "floor"
+  size 8 3
+}
+DEF WALL_1 Solid {
+  translation 4 0 0.05
+  children [
+    DEF WALL_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColor 0.12549 0.368627 0.729412
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.02 0.98 0.1
+      }
+    }
+  ]
+  name "wall 1"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_2 Solid {
+  translation -1.5 0 0.05
+  children [
+    USE WALL_SHAPE
+  ]
+  name "wall 2"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_3 Solid {
+  translation 0 -0.5 0.05
+  rotation 0 0 1 1.5708
+  children [
+    USE WALL_SHAPE
+  ]
+  name "wall 3"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_4 Solid {
+  translation 0 0.5 0.05
+  rotation 0 0 1 1.5708
+  children [
+    USE WALL_SHAPE
+  ]
+  name "wall 4"
+  boundingObject USE WALL_SHAPE
+}
+Car4wMulti2 {
+  translation -1.2 0 0.1
+}

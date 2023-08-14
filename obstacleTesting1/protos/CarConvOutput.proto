@@ -4,7 +4,7 @@
 # documentation url: https://webots.cloud/run?url=https://github.com/cyberbotics/webots/blob/released/projects/samples/tutorials/protos/FourWheelsRobot.proto
 # keywords: robot/wheeled
 
-PROTO Car4wMulti2 [
+PROTO CarConvOutput [
   field SFVec3f    translation  0 0 0.04
   field SFRotation rotation     0 0 1 0
   field SFFloat    bodyMass     1
