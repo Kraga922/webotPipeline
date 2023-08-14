@@ -8,40 +8,45 @@ from InsertMultiSym2 import get_motors
 import traceback
 import json
 
-# def process_results(results_dir):
-#     json2overcome = json2overcome2()
-#     json_file_path = os.path.join(results_dir,'WebotSim2.json') 
-#     #json2overcome.add_brackets_to_json_file(json_file_path)
-#     file = json2overcome.openData(json_file_path)
-#     #print(file)
-#     dfTranslation= json2overcome.getTranslationDF(file)
-#     #print(dfTranslation)
-#     dfTranslation['translation'] = json2overcome.formatTranslationDF(dfTranslation)
-#     #print(dfTranslation['translation'])
-#     (num_obs, time) = json2overcome.obstaclePassed(dfTranslation, 'translation')
-#     print(f'Passed {num_obs} obstacles in {time} time units')
-#     result_obj = { 'num_obs': num_obs, 'time': int(time) }
-#     result_file = os.path.join(results_dir,'result.json')
-#     with open(result_file,'w') as fp:
-#         json.dump(result_obj, fp, indent=2, separators=(',', ':'))
+def save_results(results_dir, obs_passed, time):
+    result_obj = { 'num_obs': obs_passed, 'time': time }
+    result_file = os.path.join(results_dir,'result.json')
+    with open(result_file,'w') as fp:
+        json.dump(result_obj, fp, indent=2, separators=(',', ':'))
 
-def obstaclePassed(time, value, obs_passed):
+def obstaclePassed(time, value, old_obs_passed, old_time):
     obs = []
-    if value >= 0.9:
-        if (obs_passed[0] == 3):
-            time = min(time,obs_passed[1]) 
-        obs = [3, time]
-    elif value >= 0.4: 
-        if (obs_passed[0] == 2):
-            time = min(time,obs_passed[1]) 
-        obs = [2, time]
-    elif value >= -0.1:
-        if (obs_passed[0] == 1):
-            time = min(time,obs_passed[1]) 
-        obs = [1, time]
-    else:
-        obs = [0, time]
 
+    if value >= 0.9:
+        new_obs_passed = 3
+    elif value >= 0.4:
+        new_obs_passed = 2
+    elif value >= -0.1:
+        new_obs_passed = 1
+    else:
+        new_obs_passed = 0
+    
+    if new_obs_passed > old_obs_passed:
+        new_time = time
+    else:
+        new_time = old_time
+
+    return [new_obs_passed, new_time]
+
+    # if value >= 0.9:
+    #     if (obs_passed[0] == 3):
+    #         time = min(time,obs_passed[1]) 
+    #     obs = [3, time]
+    # elif value >= 0.4: 
+    #     if (obs_passed[0] == 2):
+    #         time = min(time,obs_passed[1]) 
+    #     obs = [2, time]
+    # elif value >= -0.1:
+    #     if (obs_passed[0] == 1):
+    #         time = min(time,obs_passed[1]) 
+    #     obs = [1, time]
+    # else:
+    #     obs = [0, time]
 
     #num_obs = obs[0]
     #print(f'Passed {num_obs} obstacles in {time} time units')
@@ -49,13 +54,13 @@ def obstaclePassed(time, value, obs_passed):
     # result_file = os.path.join(results_dir,'result.json')
     # with open(result_file,'w') as fp:
     #     json.dump(result_obj, fp, indent=2, separators=(',', ':'))
-    return obs
+
 def run():
     try:
         headless = bool(os.getenv('WEBOTS_HEADLESS'))
         results_dir = os.getenv('WEBOTS_RESULTS_DIR')
         if results_dir is None:
-            results_dir = f"{basedir}/obstacleTesting1/controllers/CarSup2/"
+            results_dir = f"{basedir}/obstacleTesting1/controllers/CarSupMulti/"
         timeout = os.getenv('WEBOTS_TIMEOUT')
         if timeout is None:
             timeout = 12000  # in ms
@@ -96,7 +101,10 @@ def run():
         #avoidObstacleCounter = 0
         time = 0
         #Main loop
-        obs_passed = [0,0]
+        #obs_passed = [0,0]
+        best_obs_passed = 0
+        best_time = 0
+        maxDistance = 1.0  # where to stop the run, past all the obstacles
         while supervisor.step(TIME_STEP) != -1: 
 
             coordinates = gps.getValues()
@@ -112,20 +120,21 @@ def run():
             #body_position = body_node.getPosition()
             #print("BODY position:", body_position)
             #print(robot_body.getPosition())
-            obs_passed = obstaclePassed(time, coordinates[0], obs_passed)
+            [best_obs_passed, best_time] = obstaclePassed(time, coordinates[0], best_obs_passed, best_time)
             #print(obs_passed)
             #print(obs_passed)
-            if time > timeout or coordinates[0] > 1:
+            #if time > timeout or coordinates[0] > maxDistance:
+            if time > timeout or best_obs_passed == 3:
                 leftSpeed = 0
                 rightSpeed = 0
                 
-                print(obstaclePassed(time, coordinates[0], obs_passed))
+                #obs_passed = obstaclePassed(time, coordinates[0], obs_passed)
+                print(f'obs passed: {best_obs_passed}, time: {best_time}')
 
                 supervisor.animationStopRecording()
                 supervisor.simulationSetMode(supervisor.SIMULATION_MODE_PAUSE)
 
-
-                #process_results(results_dir)
+                save_results(results_dir, best_obs_passed, best_time)
                 
                 supervisor.simulationReset()
                 if headless:
