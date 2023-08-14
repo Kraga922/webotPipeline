@@ -3,8 +3,8 @@
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/solids/protos/SolidBox.proto"
 EXTERNPROTO "../protos/Car4wMulti2.proto"
+EXTERNPROTO "../protos/Ramp.proto"
 
 WorldInfo {
   basicTimeStep 16
@@ -30,31 +30,31 @@ WorldInfo {
     }
   ]
 }
-ElevationGrid {
-  MFFloat height         [ ]   
-  SFInt32 xDimension     1      
-  SFFloat xSpacing       1      
-  SFInt32 yDimension     1      
-  SFFloat ySpacing       1      
-  SFFloat thickness      1      
-}
 Viewpoint {
   orientation 0.20251739331806096 -0.23705387199175826 -0.9501537597554265 4.818518376780744
-  position -0.5087400466533331 -5.286294585988461 2.6474048806044643
+  position -0.5271836234906682 -5.402943338380084 2.7001439617176715
 }
-SolidBox {
-  translation -0.2 0 0
-  size 0.2 0.3 0.03
-}
-SolidBox {
-  translation 0.3 0 0
-  name "box(1)"
-  size 0.2 0.3 0.05
-}
-SolidBox {
-  translation 0.8 0 0
-  name "box(2)"
-  size 0.2 0.3 0.08
+DEF ELEVATION_GRID Solid {
+  translation -4 -2 0.05
+  children [
+    Shape {
+      appearance SandyGround {
+        textureTransform TextureTransform {
+          scale 2 2
+        }
+      }
+      geometry DEF EG ElevationGrid {
+        height [0.13409688935501152, 0.007119601767586872, 0.2018552896181143, 0.294135319729553, 0.3625652982482065, 0.1928452322455302, 0.009666434466774634, 0.2590151322953519, 0.0683082685460159, 0.002835313360404587, 0.22601688977097614, 0.38212974497553054, 0.23411277141462936, 0.21891474100331929, 0.1595183396543756, 0.28379219682537193, 0.3351343396135793, -0.04426252633415875, 0.15885915401785813, 0.372336336489164, 0.4999540236214083, 0.48768599977140015, 0.288013692835167, 0.23409336706712527, 0.3181984161847724, 0.3992325425087351, 0.4451565790235863, 0.41637556309951895, 0.19271249168492413, -0.012282439764473865, 0.20563497339975526, 0.24308061454475574, 0.08617147648892959, 0.155517172351517, 0.0712908388629167, 0.46078621434214595, 0.4950011256942952, 0.16368249690807393, 0.15851810821789739, 0.19645990773379998, 0.48513268905213713, 0.056563818363208423, 0.26421325309758603, 0.4035934510254555, 0.38393262891289837, 0.19809684997750712, 0.4193055130027351, -0.0018843793397882308, -0.01560583140026918, 0.48920993433172144, 0.12086549857134243, -0.024661285897731144, -0.025489125826838294, 0.23138935175670375, 0.05838680054943585, 0.45835913213814816, 0.17481275601444893, 0.04653745884000249, 0.13392799165896513, 0.43975936079360267, 0.08979852542570421, 0.02337749143459765, -0.012518573832316762, -0.022806122880984617, 0.4047955952021849, 0.3990240131152567, 0.2408645389262781, 0.1066827031457559, 0.19739039434790048, 0.08312342841819115, 0.38622202994093857, 0.15599340828896172, 0.11631307529679802, 0.19024931898573347, 0.06272238918081924, 0.12925686915020315, 0.19617209438947183, 0.2437994829469037, 0.2283033424515595, 0.3819222512689777, 0.44229832955052406, -0.008546612047856797, -0.07434919804617375, -0.013716844797786357, -0.03509574691331213, 0.49290623996740546, -0.00476364677157802, 0.04914087414322943, 0.3237022914306792, -0.00520832642054897, 0.4403188911409548, -0.07131858737094397, -0.05216262815353095, 0.2423303925963132, 0.4386297066917668, -0.08353062506730746, 0.3882379570710741, 0.4105624113830839, -0.011537895647671298, -0.015842087766660976]
+        xDimension 16
+        xSpacing 0.78125
+        yDimension 8
+        ySpacing 0.78125
+      }
+    }
+  ]
+  contactMaterial "floor"
+  boundingObject USE EG
+  locked TRUE
 }
 TexturedBackground {
 }
@@ -62,51 +62,11 @@ TexturedBackgroundLight {
 }
 Floor {
   contactMaterial "floor"
-  size 8 3
-}
-DEF WALL_1 Solid {
-  translation 4 0 0.05
-  children [
-    DEF WALL_SHAPE Shape {
-      appearance PBRAppearance {
-        baseColor 0.12549 0.368627 0.729412
-        roughness 1
-        metalness 0
-      }
-      geometry Box {
-        size 0.02 0.98 0.1
-      }
-    }
-  ]
-  name "wall 1"
-  boundingObject USE WALL_SHAPE
-}
-DEF WALL_2 Solid {
-  translation -1.5 0 0.05
-  children [
-    USE WALL_SHAPE
-  ]
-  name "wall 2"
-  boundingObject USE WALL_SHAPE
-}
-DEF WALL_3 Solid {
-  translation 0 -0.5 0.05
-  rotation 0 0 1 1.5708
-  children [
-    USE WALL_SHAPE
-  ]
-  name "wall 3"
-  boundingObject USE WALL_SHAPE
-}
-DEF WALL_4 Solid {
-  translation 0 0.5 0.05
-  rotation 0 0 1 1.5708
-  children [
-    USE WALL_SHAPE
-  ]
-  name "wall 4"
-  boundingObject USE WALL_SHAPE
+  size 20 8
 }
 Car4wMulti2 {
-  translation -1.2 0 0.1
+  translation -7 0 0.1
+}
+Ramp {
+  translation -5 0 0.1
 }
