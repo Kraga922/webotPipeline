@@ -115,7 +115,7 @@ def run():
             obs_passed = obstaclePassed(time, coordinates[0], obs_passed)
             #print(obs_passed)
             #print(obs_passed)
-            if time > timeout or coordinates[0] > 1.1:
+            if time > timeout or coordinates[0] > 1:
                 leftSpeed = 0
                 rightSpeed = 0
                 
