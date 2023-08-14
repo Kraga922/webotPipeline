@@ -1,79 +1,56 @@
 {
-    "bodies":[
+  "bodies":[
     {
-      "Name": "BODY",
-      "Rigid": true,
-      "Anchor": "0",
-      "Shape": "Box",
-      "Dimensions": {
-        "size": "0.2 0.1 0.05"
-      },
-      "wheels": [
+      "Name":"BODY",
+      "Rigid":true,
+      "Anchor":"0.0 0.0 0.0",
+      "wheels":[
         {
-          "Name": "WHEEL1",
-          "Symmetrical": true,
-          "WheelNum": "1",
-          "Anchor": "0.05 0.06 0",
-          "Shape": "Box",
-          "Dimensions": {
-              "size": "0.08 0.08 0.02"
+          "Name":"WHEEL1",
+          "WheelNum":"1",
+          "Symmetrical":true,
+          "Anchor":"-0.028764964005867637 0.09842678271234037 -0.05457285113632679",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.013989352062344551 0.07424967229366303 0.03516700893640518"
           }
         },
         {
-          "Name": "WHEEL2",
-          "Symmetrical": true,
-          "WheelNum": "2",
-          "Anchor": "-0.05 0.06 0",
-          "Shape": "Box",
-          "Dimensions": {
-              "size": "0.08 0.08 0.02"
+          "Name":"WHEEL2",
+          "WheelNum":"2",
+          "Symmetrical":true,
+          "Anchor":"-0.027302403282594992 0.09940845221281053 -0.03769938088953495",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.09722332358360292 0.08285308837890626 0.07242230474948884"
+          }
+        },
+        {
+          "Name":"WHEEL3",
+          "WheelNum":"3",
+          "Symmetrical":true,
+          "Anchor":"0.04138375766157943 0.10282666310667993 -0.04284407414495945",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.06455079913139344 0.035984959304332736 0.08599370300769807"
+          }
+        },
+        {
+          "Name":"WHEEL4",
+          "WheelNum":"4",
+          "Symmetrical":true,
+          "Anchor":"-0.015317169347144334 0.12474930584430696 -0.06738772161304951",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.03246338784694672",
+            "subdivision":"1"
           }
         }
-      ]
-    },
-    {
-        "Name": "BODY1",
-        "Rigid": true,
-        "Anchor": "0.2 0 0",
-        "Shape": "Cylinder",
-        "Dimensions": {
-            "height": "0.05",
-            "radius": "0.1"
-        },
-        "wheels": [
-          {
-            "Name": "WHEEL3",
-            "Symmetrical": true,
-            "WheelNum": "3",
-            "Anchor": "-0.05 0.06 0",
-            "Shape": "Box",
-            "Dimensions": {
-                "size": "0.08 0.08 0.02"
-            }
-          }
-        ]
-      },
-      {
-        "Name": "BODY2",
-        "Rigid": true,
-        "Anchor": "0.35 0 0",
-        "Shape": "Box",
-        "Dimensions": {
-          "size": "0.1 0.1 0.05"
-        },
-        "wheels": [
-          {
-            "Name": "WHEEL4",
-            "Symmetrical": true,
-            "WheelNum": "4",
-            "Anchor": "0.05 0.06 0",
-            "Shape": "Box",
-            "Dimensions": {
-                "size": "0.08 0.08 0.02"
-            }
-          }   
-        ]
+      ],
+      "Shape":"Box",
+      "Dimensions":{
+        "size":"0.0948574334383011 0.18880263566970829 0.07654056325554848"
       }
-    ]
-  }
- 
+    }
+  ]
+}
