@@ -65,6 +65,8 @@ PROTO Car4wMulti2 [
         ]
         name "ds_left"
       }
+      DEF GPS GPS {
+      }
     ]
     name IS name
     boundingObject USE BODY

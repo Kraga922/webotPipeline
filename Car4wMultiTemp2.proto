@@ -30,26 +30,6 @@ PROTO Car4wMulti2 [
       }
       
       
-      DEF BODY1 HingeJoint {
-        jointParameters HingeJointParameters {
-          axis 0 1 0
-          anchor *BODY1_ANCHOR* 
-        }
-        endPoint Solid {
-          translation *BODY1_ANCHOR* 
-          rotation 1 0 0 0
-          children [
-            DEF BODY1 Shape {
-              appearance PBRAppearance {
-                baseColor 0.5 0.3 0.8
-                roughness 1
-                metalness 0
-              }
-              geometry *BODY1_GEOMETRY* {
-                 *BODY1_SIZE*
-              }
-            }
-            
             DEF WHEEL1 HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
@@ -58,6 +38,8 @@ PROTO Car4wMulti2 [
                 device [
                 RotationalMotor {
                     name "motor1"
+                    maxTorque 100
+                    maxVelocity 26
                 }
                 ]
                 endPoint Solid {
@@ -91,6 +73,8 @@ PROTO Car4wMulti2 [
                 device [
                 RotationalMotor {
                     name "motor1SYM"
+                    maxTorque 100
+                    maxVelocity 26
                 }
                 ]
                 endPoint Solid {
@@ -116,35 +100,6 @@ PROTO Car4wMulti2 [
                 }
             }
     
-          ]
-          name "body_1"
-          contactMaterial "body_1"
-          boundingObject USE BODY1
-          physics Physics {
-          }
-        }
-      }
-    
-      DEF BODY2 HingeJoint {
-        jointParameters HingeJointParameters {
-          axis 0 1 0
-          anchor *BODY2_ANCHOR* 
-        }
-        endPoint Solid {
-          translation *BODY2_ANCHOR* 
-          rotation 1 0 0 0
-          children [
-            DEF BODY2 Shape {
-              appearance PBRAppearance {
-                baseColor 0.5 0.3 0.8
-                roughness 1
-                metalness 0
-              }
-              geometry *BODY2_GEOMETRY* {
-                 *BODY2_SIZE*
-              }
-            }
-            
             DEF WHEEL2 HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
@@ -153,6 +108,8 @@ PROTO Car4wMulti2 [
                 device [
                 RotationalMotor {
                     name "motor2"
+                    maxTorque 100
+                    maxVelocity 26
                 }
                 ]
                 endPoint Solid {
@@ -186,6 +143,8 @@ PROTO Car4wMulti2 [
                 device [
                 RotationalMotor {
                     name "motor2SYM"
+                    maxTorque 100
+                    maxVelocity 26
                 }
                 ]
                 endPoint Solid {
@@ -211,15 +170,6 @@ PROTO Car4wMulti2 [
                 }
             }
     
-          ]
-          name "body_2"
-          contactMaterial "body_2"
-          boundingObject USE BODY2
-          physics Physics {
-          }
-        }
-      }
-    
             DEF WHEEL3 HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
@@ -228,6 +178,8 @@ PROTO Car4wMulti2 [
                 device [
                 RotationalMotor {
                     name "motor3"
+                    maxTorque 100
+                    maxVelocity 26
                 }
                 ]
                 endPoint Solid {
@@ -261,6 +213,8 @@ PROTO Car4wMulti2 [
                 device [
                 RotationalMotor {
                     name "motor3SYM"
+                    maxTorque 100
+                    maxVelocity 26
                 }
                 ]
                 endPoint Solid {
@@ -294,6 +248,8 @@ PROTO Car4wMulti2 [
                 device [
                 RotationalMotor {
                     name "motor4"
+                    maxTorque 100
+                    maxVelocity 26
                 }
                 ]
                 endPoint Solid {
@@ -327,6 +283,8 @@ PROTO Car4wMulti2 [
                 device [
                 RotationalMotor {
                     name "motor4SYM"
+                    maxTorque 100
+                    maxVelocity 26
                 }
                 ]
                 endPoint Solid {
@@ -386,6 +344,8 @@ PROTO Car4wMulti2 [
           }
         ]
         name "ds_left"
+      }
+      DEF GPS GPS {
       }
     ]
     name IS name
