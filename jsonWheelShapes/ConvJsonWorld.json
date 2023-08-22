@@ -1,0 +1,31 @@
+
+{
+    "Missions": [
+        {
+        "Name":"Mission(1)",
+        "X-location": 40,
+        "Y-location": -55
+        },
+        {
+        "Name":"Mission(2)",
+        "X-location": -20,
+        "Y-location": 10
+        },
+        {
+        "Name":"Mission(3)",
+        "X-location": 50,
+        "Y-location": -5
+        },
+        {
+        "Name":"Mission(4)",
+        "X-location": -20,
+        "Y-location": -50
+        }
+    ],
+    "Materials": [
+        {
+        "Friction Coefficient": 0.6,
+        "Rolling Resistance Coefficient": 0.02
+        }
+    ]
+}

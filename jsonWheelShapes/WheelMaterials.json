@@ -1,0 +1,152 @@
+[
+    {
+     "Tire Type": "Off road tire",
+     "Road surface": "Asphalt and concrete (dry)",
+     "Friction Coefficient": 0.75,
+     "Rolling Resistance Coefficient": 0.02
+    },
+    {
+     "Tire Type": "Off road tire",
+     "Road surface": "Asphalt (wet)",
+     "Friction Coefficient": 0.5,
+     "Rolling Resistance Coefficient": 0.024
+    },
+    {
+     "Tire Type": "Off road tire",
+     "Road surface": "Gravel",
+     "Friction Coefficient": 0.6,
+     "Rolling Resistance Coefficient": 0.02
+    },
+    {
+     "Tire Type": "Off road tire",
+     "Road surface": "Earth road (dry)",
+     "Friction Coefficient": 0.75,
+     "Rolling Resistance Coefficient": 0.03
+    },
+    {
+     "Tire Type": "Off road tire",
+     "Road surface": "Earth road (wet)",
+     "Friction Coefficient": 0.6,
+     "Rolling Resistance Coefficient": 0.04
+    },
+    {
+     "Tire Type": "Off road tire",
+     "Road surface": "Snow (hard-packed)",
+     "Friction Coefficient": 0.25,
+     "Rolling Resistance Coefficient": 0.022
+    },
+    {
+     "Tire Type": "Off road tire",
+     "Road surface": "Ice",
+     "Friction Coefficient": 0.1,
+     "Rolling Resistance Coefficient": 0.02
+    },
+    {
+     "Tire Type": "Off road tire",
+     "Road surface": "Sand",
+     "Friction Coefficient": 0.6,
+     "Rolling Resistance Coefficient": 0.2
+    },
+    {
+     "Tire Type": "Truck tire",
+     "Road surface": "Asphalt and concrete (dry)",
+     "Friction Coefficient": 0.8,
+     "Rolling Resistance Coefficient": 0.008
+    },
+    {
+     "Tire Type": "Truck tire",
+     "Road surface": "Asphalt (wet)",
+     "Friction Coefficient": 0.55,
+     "Rolling Resistance Coefficient": 0.01
+    },
+    {
+     "Tire Type": "Truck tire",
+     "Road surface": "Gravel",
+     "Friction Coefficient": 0.6,
+     "Rolling Resistance Coefficient": 0.02
+    },
+    {
+     "Tire Type": "Truck tire",
+     "Road surface": "Earth road (dry)",
+     "Friction Coefficient": 0.68,
+     "Rolling Resistance Coefficient": 0.04
+    },
+    {
+     "Tire Type": "Truck tire",
+     "Road surface": "Earth road (wet)",
+     "Friction Coefficient": 0.55,
+     "Rolling Resistance Coefficient": 0.06
+    },
+    {
+     "Tire Type": "Truck tire",
+     "Road surface": "Snow (hard-packed)",
+     "Friction Coefficient": 0.2,
+     "Rolling Resistance Coefficient": 0.013
+    },
+    {
+     "Tire Type": "Truck tire",
+     "Road surface": "Ice",
+     "Friction Coefficient": 0.1,
+     "Rolling Resistance Coefficient": 0.008
+    },
+    {
+     "Tire Type": "Truck tire",
+     "Road surface": "Sand",
+     "Friction Coefficient": 0.6,
+     "Rolling Resistance Coefficient": 0.25
+    },
+    {
+     "Tire Type": "Car tire",
+     "Road surface": "Asphalt and concrete (dry)",
+     "Friction Coefficient": 0.9,
+     "Rolling Resistance Coefficient": 0.011
+    },
+    {
+     "Tire Type": "Car tire",
+     "Road surface": "Asphalt (wet)",
+     "Friction Coefficient": 0.6,
+     "Rolling Resistance Coefficient": 0.013
+    },
+    {
+     "Tire Type": "Car tire",
+     "Road surface": "Gravel",
+     "Friction Coefficient": 0.6,
+     "Rolling Resistance Coefficient": 0.02
+    },
+    {
+     "Tire Type": "Car tire",
+     "Road surface": "Earth road (dry)",
+     "Friction Coefficient": 0.68,
+     "Rolling Resistance Coefficient": 0.05
+    },
+    {
+     "Tire Type": "Car tire",
+     "Road surface": "Earth road (wet)",
+     "Friction Coefficient": 0.55,
+     "Rolling Resistance Coefficient": 0.08
+    },
+    {
+     "Tire Type": "Car tire",
+     "Road surface": "Snow (hard-packed)",
+     "Friction Coefficient": 0.2,
+     "Rolling Resistance Coefficient": 0.016
+    },
+    {
+     "Tire Type": "Car tire",
+     "Road surface": "Ice",
+     "Friction Coefficient": 0.1,
+     "Rolling Resistance Coefficient": 0.011
+    },
+    {
+     "Tire Type": "Car tire",
+     "Road surface": "Sand",
+     "Friction Coefficient": 0.6,
+     "Rolling Resistance Coefficient": 0.3
+    },
+    {
+    "Tire Type": "Rubber",
+    "Road surface": "Steal",
+    "Friction Coefficient": 0.64,
+    "Rolling Resistance Coefficient": 0.015
+    }
+   ]

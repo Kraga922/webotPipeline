@@ -1,0 +1,124 @@
+{
+  "bodies":[
+    {
+      "Name":"BODY",
+      "Rigid":false,
+      "Anchor":"0.0 0.0 0.0",
+      "wheels":[
+        {
+          "Name":"WHEEL1",
+          "WheelNum":"1",
+          "Symmetrical":true,
+          "Anchor":"-0.010459649587189535 0.14060051888227462 -0.02961112663149834",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.03566353142261505 0.03334794282913208 0.06309681117534638"
+          }
+        },
+        {
+          "Name":"WHEEL2",
+          "WheelNum":"2",
+          "Symmetrical":true,
+          "Anchor":"0.003272926515345992 0.10361949801445007 -0.04646447807550431",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.04595842629671097 0.0942377781867981 0.08698218286037446"
+          }
+        },
+        {
+          "Name":"WHEEL3",
+          "WheelNum":"3",
+          "Symmetrical":true,
+          "Anchor":"-0.006278231024799061 0.11376732885837555 -0.04673374146223069",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.07958815336227418",
+            "subdivision":"1"
+          }
+        },
+        {
+          "Name":"WHEEL4",
+          "WheelNum":"4",
+          "Symmetrical":true,
+          "Anchor":"-0.014243564470717028 0.10708364993333816 -0.05350601702928544",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.09642051696777344",
+            "subdivision":"1"
+          }
+        }
+      ],
+      "Shape":"Box",
+      "Dimensions":{
+        "size":"0.051422166731208564 0.18649818003177643 0.07502251565456391"
+      }
+    },
+    {
+      "Name":"BODY1",
+      "Rigid":true,
+      "Anchor":"0.16579751665703957 0.0 0.0",
+      "wheels":[
+        {
+          "Name":"WHEEL5",
+          "WheelNum":"5",
+          "Symmetrical":true,
+          "Anchor":"0.09489910791494512 0.17529031932353978 -0.08635855525732042",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.022253832817077636",
+            "subdivision":"1"
+          }
+        },
+        {
+          "Name":"WHEEL6",
+          "WheelNum":"6",
+          "Symmetrical":true,
+          "Anchor":"0.016801187880652796 0.14472229294478897 -0.0643162938952446",
+          "Shape":"Cylinder",
+          "Dimensions":{
+            "height":"0.09458864331245423",
+            "radius":"0.09485652089118958"
+          }
+        },
+        {
+          "Name":"WHEEL7",
+          "WheelNum":"7",
+          "Symmetrical":true,
+          "Anchor":"-0.08202028966684945 0.1610744029283524 -0.057474016249179846",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.029702944159507756 0.07000573098659515 0.06728777348995209"
+          }
+        }
+      ],
+      "Shape":"Cylinder",
+      "Dimensions":{
+        "height":0.08036726415157319,
+        "radius":0.14008643329143528
+      }
+    }
+  ],
+  "Missions": [
+    {
+      "Name":"Mission(1)",
+      "X-location": 2,
+      "Y-location": 0.8
+    },
+    {
+      "Name":"Mission(2)",
+      "X-location": -0.5,
+      "Y-location": -1
+    },
+    {
+      "Name":"Mission(3)",
+      "X-location": 40,
+      "Y-location": 50
+    }
+  ],
+  "Materials": [
+    {
+      "Material1": "Car",
+      "Material2": "Sand"
+    }
+  ]
+}
