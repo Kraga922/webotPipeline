@@ -6,10 +6,10 @@ def read_text_file(file_path):
         content = file.read()
     return content.strip()
 
-def read_json_file(file_path):
-    with open(file_path, "r") as file:
-        data = json.load(file)
-    return data
+# def read_json_file(file_path):
+#     with open(file_path, "r") as file:
+#         data = json.load(file)
+#     return data
 
 def generate_geometry_code(geom_data, indentation=14):
     if isinstance(geom_data, str):
@@ -81,7 +81,7 @@ def insert_wheel(wheel_number):
                 device [
                 RotationalMotor {{
                     name "motor{wheel_number}"
-                    maxTorque 100
+                    maxTorque 5000
                     maxVelocity 26
                 }}
                 ]
@@ -101,9 +101,10 @@ def insert_wheel(wheel_number):
                     }}
                 ]
                 name "wheel_{wheel_number}"
-                contactMaterial "wheel_{wheel_number}"
+                contactMaterial "wheel"
                 boundingObject USE WHEEL{wheel_number}
                 physics Physics {{
+                    density 100
                 }}
                 }}
             }}
@@ -140,6 +141,7 @@ def insert_body(body_number):
           contactMaterial "body_{body_number}"
           boundingObject USE BODY{body_number}
           physics Physics {{
+            density 300
           }}
         }}
       }}
@@ -193,14 +195,52 @@ def create_template(json_data):
     #print(bodies_wheels_code)
     return bodies_wheels_code, motors
 
+def getMissionLocation(json_data):
+    #find flags 
+    # add flag name as key and flag x and y values and the value
+    # return the dict
+    json_obj = json.loads(json_data)
+    missions_dict = {}
 
+    for mission in json_obj["Missions"]:
+        mission_name = mission["Name"]
+        x_location = mission["X-location"]
+        y_location = mission["Y-location"]
+        missions_dict[mission_name] = (x_location, y_location)
 
+    return missions_dict
+
+def insertMissions(json_data):
+    json_obj = json.loads(json_data)
+    num = 0
+    body_design = ""
+    for missions in json_obj["Missions"]:
+        num += 1
+        body_design += f"""
+Mission {{
+  translation {missions["X-location"]} {missions["Y-location"]} 10
+  name "mission{num}"
+}}
+"""
+    return body_design
+
+def replaceMaterial(modified_world, json_data):
+    json_obj = json.loads(json_data)
+    for material in json_obj["Materials"]:
+      Friction = str(material["Friction Coefficient"]) # just a number   
+      RollingFriction = str(material["Rolling Resistance Coefficient"])
+      modified_world = modified_world.replace(f"*InsertCoulombFriction*", Friction)
+      modified_world = modified_world.replace(f"*InsertRollingFriction*", RollingFriction)
+    return modified_world
+    
 def main(pipeline_dir):
    
     json_file_path = os.path.join(pipeline_dir, "jsonWheelShapes/ConvJsonMultiSym2.json")
     json_data = read_text_file(json_file_path)
    
     get_motors(json_file_path)
+   
+    #print(missions[list(missions.keys())[0]])
     #Modifies the template
     with open(os.path.join(pipeline_dir, "Car4wMultiTemp.proto"), "r") as file:
         content = file.read()
@@ -211,7 +251,23 @@ def main(pipeline_dir):
  
     with open(os.path.join(pipeline_dir, "Car4wMultiTemp2.proto"), "w") as file:
         file.write(modified_content)
+    
+    json_world_file_path = os.path.join(pipeline_dir, "jsonWheelShapes/ConvJsonWorld.json")
+    json_world_data = read_text_file(json_world_file_path) 
+
+    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting4Temp.wbt"), "r") as file:
+        content = file.read()
  
+    #num_bodies, num_wheels = num_wheels_bodies(json_data)
+    #modified_content = content.replace("**InsertBodiesAndWheels**", create_template(num_bodies-1,num_wheels, json_data))
+    modified_world = content.replace("**Missions**", insertMissions(json_world_data))
+    #print(modified_world)
+    modified_world = replaceMaterial(modified_world, json_world_data)
+    #print(modified_world)
+    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting4.wbt"), "w") as file:
+        file.write(modified_world)
+    
+    
  
         # Read JSON data from file
  
@@ -228,6 +284,10 @@ def main(pipeline_dir):
         file.write(proto_output)
  
     #print(f"Proto data has been written to '{output_proto_file}'.")
+    # with open(os.path.join(pipeline_dir, "obstacleTesting4.wbt"), "r") as file:
+    #   world_data = file.read()
+
+    
  
  
  
@@ -314,3 +374,114 @@ if __name__ == "__main__":
 #     ]
 #   }
  
+
+
+ 
+
+
+"""
+{
+  "bodies":[
+    {
+      "Name":"BODY",
+      "Rigid":false,
+      "Anchor":"0.0 0.0 0.0",
+      "wheels":[
+        {
+          "Name":"WHEEL1",
+          "WheelNum":"1",
+          "Symmetrical":true,
+          "Anchor":"-0.010459649587189535 0.14060051888227462 -0.02961112663149834",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.03566353142261505 0.03334794282913208 0.06309681117534638"
+          }
+        },
+        {
+          "Name":"WHEEL2",
+          "WheelNum":"2",
+          "Symmetrical":true,
+          "Anchor":"0.003272926515345992 0.10361949801445007 -0.04646447807550431",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.04595842629671097 0.0942377781867981 0.08698218286037446"
+          }
+        },
+        {
+          "Name":"WHEEL3",
+          "WheelNum":"3",
+          "Symmetrical":true,
+          "Anchor":"-0.006278231024799061 0.11376732885837555 -0.04673374146223069",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.07958815336227418",
+            "subdivision":"1"
+          }
+        },
+        {
+          "Name":"WHEEL4",
+          "WheelNum":"4",
+          "Symmetrical":true,
+          "Anchor":"-0.014243564470717028 0.10708364993333816 -0.05350601702928544",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.09642051696777344",
+            "subdivision":"1"
+          }
+        }
+      ],
+      "Shape":"Box",
+      "Dimensions":{
+        "size":"0.051422166731208564 0.18649818003177643 0.07502251565456391"
+      }
+    },
+    {
+      "Name":"BODY1",
+      "Rigid":true,
+      "Anchor":"0.16579751665703957 0.0 0.0",
+      "wheels":[
+        {
+          "Name":"WHEEL5",
+          "WheelNum":"5",
+          "Symmetrical":true,
+          "Anchor":"0.09489910791494512 0.17529031932353978 -0.08635855525732042",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.022253832817077636",
+            "subdivision":"1"
+          }
+        },
+        {
+          "Name":"WHEEL6",
+          "WheelNum":"6",
+          "Symmetrical":true,
+          "Anchor":"0.016801187880652796 0.14472229294478897 -0.0643162938952446",
+          "Shape":"Cylinder",
+          "Dimensions":{
+            "height":"0.09458864331245423",
+            "radius":"0.09485652089118958"
+          }
+        },
+        {
+          "Name":"WHEEL7",
+          "WheelNum":"7",
+          "Symmetrical":true,
+          "Anchor":"-0.08202028966684945 0.1610744029283524 -0.057474016249179846",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.029702944159507756 0.07000573098659515 0.06728777348995209"
+          }
+        }
+      ],
+      "Shape":"Cylinder",
+      "Dimensions":{
+        "height":0.08036726415157319,
+        "radius":0.14008643329143528
+      }
+    }
+  ]
+}
+
+
+
+"""

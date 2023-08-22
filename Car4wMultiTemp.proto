@@ -8,6 +8,7 @@ PROTO Car4wMulti2 [
   field SFVec3f    translation  0 0 0.04
   field SFRotation rotation     0 0 1 0
   field SFFloat    bodyMass     1
+  field MFFloat    battery      [360000000 360000000 0]
   field SFString   controller   "CarSupMulti"
   field  SFString  name         "Car4wMulti2" 
 ]
@@ -65,7 +66,13 @@ PROTO Car4wMulti2 [
         ]
         name "ds_left"
       }
+      DEF COMPASS Compass {
+      }
       DEF GPS GPS {
+      }
+      DEF GYRO Gyro {
+      }
+      DEF INERTIAL_UNIT InertialUnit {
       }
     ]
     name IS name
@@ -75,5 +82,6 @@ PROTO Car4wMulti2 [
       mass IS bodyMass
     }
     controller "CarSupMulti"
+    battery IS battery
   }
 }
