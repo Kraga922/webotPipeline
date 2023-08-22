@@ -8,6 +8,7 @@ PROTO Car4wMulti2 [
   field SFVec3f    translation  0 0 0.04
   field SFRotation rotation     0 0 1 0
   field SFFloat    bodyMass     1
+  field MFFloat    battery      [360000000 360000000 0]
   field SFString   controller   "CarSupMulti"
   field  SFString  name         "Car4wMulti2" 
 ]
@@ -25,26 +26,286 @@ PROTO Car4wMulti2 [
           metalness 0
         }
         geometry Box {
-                         size 0.0948574334383011 0.18880263566970829 0.07654056325554848
+                         size 0.51422166731208564 01.8649818003177643 0.7502251565456391
 
         }
       }
       
       
-            DEF WHEEL1 HingeJoint {
+      DEF BODY1 HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor 01.6579751665703957 0.0 0.0 
+          minStop -.001     
+          maxStop .001 
+        }
+        endPoint Solid {
+          translation 01.6579751665703957 0.0 0.0 
+          rotation 1 0 0 0
+          children [
+            DEF BODY1 Shape {
+              appearance PBRAppearance {
+                baseColor 0.5 0.3 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                                height 0.8036726415157319
+               radius 1.4008643329143529
+
+              }
+            }
+            
+            DEF WHEEL5 HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
-                anchor -0.028764964005867637 0.09842678271234037 -0.05457285113632679 
+                anchor 0.9489910791494512 01.7529031932353978 -0.8635855525732042 
                 }
                 device [
                 RotationalMotor {
-                    name "motor1"
-                    maxTorque 100
+                    name "motor5"
+                    maxTorque 5000
                     maxVelocity 26
                 }
                 ]
                 endPoint Solid {
-                translation -0.028764964005867637 0.09842678271234037 -0.05457285113632679 
+                translation 0.9489910791494512 01.7529031932353978 -0.8635855525732042 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL5 Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry Sphere {
+                                       radius 0.22253832817077636
+               subdivision 1
+
+                    }
+                    }
+                ]
+                name "wheel_5"
+                contactMaterial "wheel"
+                boundingObject USE WHEEL5
+                physics Physics {
+                    density 100
+                }
+                }
+            }
+    
+            DEF WHEEL5SYM HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor 0.9489910791494512 -1.7529031932353978 -0.8635855525732042 
+                }
+                device [
+                RotationalMotor {
+                    name "motor5SYM"
+                    maxTorque 5000
+                    maxVelocity 26
+                }
+                ]
+                endPoint Solid {
+                translation 0.9489910791494512 -1.7529031932353978 -0.8635855525732042 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL5SYM Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry Sphere {
+                                       radius 0.22253832817077636
+               subdivision 1
+
+                    }
+                    }
+                ]
+                name "wheel_5SYM"
+                contactMaterial "wheel"
+                boundingObject USE WHEEL5SYM
+                physics Physics {
+                    density 100
+                }
+                }
+            }
+    
+            DEF WHEEL6 HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor 0.16801187880652796 01.4472229294478897 -0.643162938952446 
+                }
+                device [
+                RotationalMotor {
+                    name "motor6"
+                    maxTorque 5000
+                    maxVelocity 26
+                }
+                ]
+                endPoint Solid {
+                translation 0.16801187880652796 01.4472229294478897 -0.643162938952446 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL6 Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry Cylinder {
+                                       height 0.9458864331245423
+               radius 0.9485652089118958
+
+                    }
+                    }
+                ]
+                name "wheel_6"
+                contactMaterial "wheel"
+                boundingObject USE WHEEL6
+                physics Physics {
+                    density 100
+                }
+                }
+            }
+    
+            DEF WHEEL6SYM HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor 0.16801187880652796 -1.4472229294478898 -0.643162938952446 
+                }
+                device [
+                RotationalMotor {
+                    name "motor6SYM"
+                    maxTorque 5000
+                    maxVelocity 26
+                }
+                ]
+                endPoint Solid {
+                translation 0.16801187880652796 -1.4472229294478898 -0.643162938952446 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL6SYM Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry Cylinder {
+                                       height 0.9458864331245423
+               radius 0.9485652089118958
+
+                    }
+                    }
+                ]
+                name "wheel_6SYM"
+                contactMaterial "wheel"
+                boundingObject USE WHEEL6SYM
+                physics Physics {
+                    density 100
+                }
+                }
+            }
+    
+            DEF WHEEL7 HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor -0.8202028966684945 01.610744029283524 -0.57474016249179846 
+                }
+                device [
+                RotationalMotor {
+                    name "motor7"
+                    maxTorque 5000
+                    maxVelocity 26
+                }
+                ]
+                endPoint Solid {
+                translation -0.8202028966684945 01.610744029283524 -0.57474016249179846 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL7 Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry Box {
+                                       size 0.29702944159507756 0.7000573098659515 0.6728777348995209
+
+                    }
+                    }
+                ]
+                name "wheel_7"
+                contactMaterial "wheel"
+                boundingObject USE WHEEL7
+                physics Physics {
+                    density 100
+                }
+                }
+            }
+    
+            DEF WHEEL7SYM HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor -0.8202028966684945 -1.610744029283524 -0.57474016249179846 
+                }
+                device [
+                RotationalMotor {
+                    name "motor7SYM"
+                    maxTorque 5000
+                    maxVelocity 26
+                }
+                ]
+                endPoint Solid {
+                translation -0.8202028966684945 -1.610744029283524 -0.57474016249179846 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL7SYM Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry Box {
+                                       size 0.29702944159507756 0.7000573098659515 0.6728777348995209
+
+                    }
+                    }
+                ]
+                name "wheel_7SYM"
+                contactMaterial "wheel"
+                boundingObject USE WHEEL7SYM
+                physics Physics {
+                    density 100
+                }
+                }
+            }
+    
+          ]
+          name "body_1"
+          contactMaterial "body_1"
+          boundingObject USE BODY1
+          physics Physics {
+            density 300
+          }
+        }
+      }
+    
+            DEF WHEEL1 HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor -0.10459649587189535 01.4060051888227462 -0.2961112663149834 
+                }
+                device [
+                RotationalMotor {
+                    name "motor1"
+                    maxTorque 5000
+                    maxVelocity 26
+                }
+                ]
+                endPoint Solid {
+                translation -0.10459649587189535 01.4060051888227462 -0.2961112663149834 
                 rotation 1 0 0 1.5708
                 children [
                     DEF WHEEL1 Shape {
@@ -54,15 +315,16 @@ PROTO Car4wMulti2 [
                         metalness 0
                     }
                     geometry Box {
-                                       size 0.013989352062344551 0.07424967229366303 0.03516700893640518
+                                       size 0.3566353142261505 0.3334794282913208 0.6309681117534638
 
                     }
                     }
                 ]
                 name "wheel_1"
-                contactMaterial "wheel_1"
+                contactMaterial "wheel"
                 boundingObject USE WHEEL1
                 physics Physics {
+                    density 100
                 }
                 }
             }
@@ -70,17 +332,17 @@ PROTO Car4wMulti2 [
             DEF WHEEL1SYM HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
-                anchor -0.028764964005867637 -0.09842678271234037 -0.05457285113632679 
+                anchor -0.10459649587189535 -1.4060051888227463 -0.2961112663149834 
                 }
                 device [
                 RotationalMotor {
                     name "motor1SYM"
-                    maxTorque 100
+                    maxTorque 5000
                     maxVelocity 26
                 }
                 ]
                 endPoint Solid {
-                translation -0.028764964005867637 -0.09842678271234037 -0.05457285113632679 
+                translation -0.10459649587189535 -1.4060051888227463 -0.2961112663149834 
                 rotation 1 0 0 1.5708
                 children [
                     DEF WHEEL1SYM Shape {
@@ -90,15 +352,16 @@ PROTO Car4wMulti2 [
                         metalness 0
                     }
                     geometry Box {
-                                       size 0.013989352062344551 0.07424967229366303 0.03516700893640518
+                                       size 0.3566353142261505 0.3334794282913208 0.6309681117534638
 
                     }
                     }
                 ]
                 name "wheel_1SYM"
-                contactMaterial "wheel_1SYM"
+                contactMaterial "wheel"
                 boundingObject USE WHEEL1SYM
                 physics Physics {
+                    density 100
                 }
                 }
             }
@@ -106,17 +369,17 @@ PROTO Car4wMulti2 [
             DEF WHEEL2 HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
-                anchor -0.027302403282594992 0.09940845221281053 -0.03769938088953495 
+                anchor 0.03272926515345992 01.0361949801445007 -0.4646447807550431 
                 }
                 device [
                 RotationalMotor {
                     name "motor2"
-                    maxTorque 100
+                    maxTorque 5000
                     maxVelocity 26
                 }
                 ]
                 endPoint Solid {
-                translation -0.027302403282594992 0.09940845221281053 -0.03769938088953495 
+                translation 0.03272926515345992 01.0361949801445007 -0.4646447807550431 
                 rotation 1 0 0 1.5708
                 children [
                     DEF WHEEL2 Shape {
@@ -126,15 +389,16 @@ PROTO Car4wMulti2 [
                         metalness 0
                     }
                     geometry Box {
-                                       size 0.09722332358360292 0.08285308837890626 0.07242230474948884
+                                       size 0.4595842629671097 0.942377781867981 0.8698218286037446
 
                     }
                     }
                 ]
                 name "wheel_2"
-                contactMaterial "wheel_2"
+                contactMaterial "wheel"
                 boundingObject USE WHEEL2
                 physics Physics {
+                    density 100
                 }
                 }
             }
@@ -142,17 +406,17 @@ PROTO Car4wMulti2 [
             DEF WHEEL2SYM HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
-                anchor -0.027302403282594992 -0.09940845221281053 -0.03769938088953495 
+                anchor 0.03272926515345992 -1.0361949801445007 -0.4646447807550431 
                 }
                 device [
                 RotationalMotor {
                     name "motor2SYM"
-                    maxTorque 100
+                    maxTorque 5000
                     maxVelocity 26
                 }
                 ]
                 endPoint Solid {
-                translation -0.027302403282594992 -0.09940845221281053 -0.03769938088953495 
+                translation 0.03272926515345992 -1.0361949801445007 -0.4646447807550431 
                 rotation 1 0 0 1.5708
                 children [
                     DEF WHEEL2SYM Shape {
@@ -162,15 +426,16 @@ PROTO Car4wMulti2 [
                         metalness 0
                     }
                     geometry Box {
-                                       size 0.09722332358360292 0.08285308837890626 0.07242230474948884
+                                       size 0.4595842629671097 0.942377781867981 0.8698218286037446
 
                     }
                     }
                 ]
                 name "wheel_2SYM"
-                contactMaterial "wheel_2SYM"
+                contactMaterial "wheel"
                 boundingObject USE WHEEL2SYM
                 physics Physics {
+                    density 100
                 }
                 }
             }
@@ -178,17 +443,17 @@ PROTO Car4wMulti2 [
             DEF WHEEL3 HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
-                anchor 0.04138375766157943 0.10282666310667993 -0.04284407414495945 
+                anchor -0.06278231024799061 01.1376732885837555 -0.4673374146223069 
                 }
                 device [
                 RotationalMotor {
                     name "motor3"
-                    maxTorque 100
+                    maxTorque 5000
                     maxVelocity 26
                 }
                 ]
                 endPoint Solid {
-                translation 0.04138375766157943 0.10282666310667993 -0.04284407414495945 
+                translation -0.06278231024799061 01.1376732885837555 -0.4673374146223069 
                 rotation 1 0 0 1.5708
                 children [
                     DEF WHEEL3 Shape {
@@ -197,16 +462,18 @@ PROTO Car4wMulti2 [
                         roughness 1
                         metalness 0
                     }
-                    geometry Box {
-                                       size 0.06455079913139344 0.035984959304332736 0.08599370300769807
+                    geometry Sphere {
+                                       radius 0.7958815336227418
+               subdivision 1
 
                     }
                     }
                 ]
                 name "wheel_3"
-                contactMaterial "wheel_3"
+                contactMaterial "wheel"
                 boundingObject USE WHEEL3
                 physics Physics {
+                    density 100
                 }
                 }
             }
@@ -214,17 +481,17 @@ PROTO Car4wMulti2 [
             DEF WHEEL3SYM HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
-                anchor 0.04138375766157943 -0.10282666310667993 -0.04284407414495945 
+                anchor -0.06278231024799061 -1.1376732885837555 -0.4673374146223069 
                 }
                 device [
                 RotationalMotor {
                     name "motor3SYM"
-                    maxTorque 100
+                    maxTorque 5000
                     maxVelocity 26
                 }
                 ]
                 endPoint Solid {
-                translation 0.04138375766157943 -0.10282666310667993 -0.04284407414495945 
+                translation -0.06278231024799061 -1.1376732885837555 -0.4673374146223069 
                 rotation 1 0 0 1.5708
                 children [
                     DEF WHEEL3SYM Shape {
@@ -233,16 +500,18 @@ PROTO Car4wMulti2 [
                         roughness 1
                         metalness 0
                     }
-                    geometry Box {
-                                       size 0.06455079913139344 0.035984959304332736 0.08599370300769807
+                    geometry Sphere {
+                                       radius 0.7958815336227418
+               subdivision 1
 
                     }
                     }
                 ]
                 name "wheel_3SYM"
-                contactMaterial "wheel_3SYM"
+                contactMaterial "wheel"
                 boundingObject USE WHEEL3SYM
                 physics Physics {
+                    density 100
                 }
                 }
             }
@@ -250,17 +519,17 @@ PROTO Car4wMulti2 [
             DEF WHEEL4 HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
-                anchor -0.015317169347144334 0.12474930584430696 -0.06738772161304951 
+                anchor -0.14243564470717028 01.0708364993333816 -0.5350601702928544 
                 }
                 device [
                 RotationalMotor {
                     name "motor4"
-                    maxTorque 100
+                    maxTorque 5000
                     maxVelocity 26
                 }
                 ]
                 endPoint Solid {
-                translation -0.015317169347144334 0.12474930584430696 -0.06738772161304951 
+                translation -0.14243564470717028 01.0708364993333816 -0.5350601702928544 
                 rotation 1 0 0 1.5708
                 children [
                     DEF WHEEL4 Shape {
@@ -270,16 +539,17 @@ PROTO Car4wMulti2 [
                         metalness 0
                     }
                     geometry Sphere {
-                                       radius 0.03246338784694672
+                                       radius 0.9642051696777344
                subdivision 1
 
                     }
                     }
                 ]
                 name "wheel_4"
-                contactMaterial "wheel_4"
+                contactMaterial "wheel"
                 boundingObject USE WHEEL4
                 physics Physics {
+                    density 100
                 }
                 }
             }
@@ -287,17 +557,17 @@ PROTO Car4wMulti2 [
             DEF WHEEL4SYM HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
-                anchor -0.015317169347144334 -0.12474930584430696 -0.06738772161304951 
+                anchor -0.14243564470717028 -1.0708364993333817 -0.5350601702928544 
                 }
                 device [
                 RotationalMotor {
                     name "motor4SYM"
-                    maxTorque 100
+                    maxTorque 5000
                     maxVelocity 26
                 }
                 ]
                 endPoint Solid {
-                translation -0.015317169347144334 -0.12474930584430696 -0.06738772161304951 
+                translation -0.14243564470717028 -1.0708364993333817 -0.5350601702928544 
                 rotation 1 0 0 1.5708
                 children [
                     DEF WHEEL4SYM Shape {
@@ -307,16 +577,17 @@ PROTO Car4wMulti2 [
                         metalness 0
                     }
                     geometry Sphere {
-                                       radius 0.03246338784694672
+                                       radius 0.9642051696777344
                subdivision 1
 
                     }
                     }
                 ]
                 name "wheel_4SYM"
-                contactMaterial "wheel_4SYM"
+                contactMaterial "wheel"
                 boundingObject USE WHEEL4SYM
                 physics Physics {
+                    density 100
                 }
                 }
             }
@@ -356,7 +627,13 @@ PROTO Car4wMulti2 [
         ]
         name "ds_left"
       }
+      DEF COMPASS Compass {
+      }
       DEF GPS GPS {
+      }
+      DEF GYRO Gyro {
+      }
+      DEF INERTIAL_UNIT InertialUnit {
       }
     ]
     name IS name
@@ -366,5 +643,6 @@ PROTO Car4wMulti2 [
       mass IS bodyMass
     }
     controller "CarSupMulti"
+    battery IS battery
   }
 }

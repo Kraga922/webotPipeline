@@ -18,8 +18,8 @@ WorldInfo {
     ContactProperties {
       material1 "ground"
       material2 "wheel"
-      coulombFriction 0.6
-      rollingFriction 0.02 0 0
+      coulombFriction *InsertCoulombFriction*
+      rollingFriction *InsertRollingFriction* 0 0
       softCFM 1e-05
     }
     ContactProperties {
@@ -72,23 +72,4 @@ Car4wMulti2 {
 Base {
   translation -28 -65 -7
 }
-
-Mission {
-  translation 40 -55 10
-  name "mission1"
-}
-
-Mission {
-  translation -20 10 10
-  name "mission2"
-}
-
-Mission {
-  translation 50 -5 10
-  name "mission3"
-}
-
-Mission {
-  translation -20 -50 10
-  name "mission4"
-}
+**Missions**

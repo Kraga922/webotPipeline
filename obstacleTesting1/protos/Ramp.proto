@@ -9,7 +9,7 @@
 PROTO Ramp [
   field SFVec3f    translation  0 0 0
   field SFRotation rotation     0 0 1 0
-  field SFString   name         "ramp 30 degrees"
+  field SFString   name         "ramp"
   field SFColor    color        0.5 0.5 0.5        # Defines the color of the ramp.
 ]
 {
@@ -20,7 +20,7 @@ PROTO Ramp [
       DEF RAMP Group {
         children [
           Pose {
-            translation -.707 0 0
+            translation -18.41 0 04.5
             rotation 0 -1 0 0.5236
             children [
               Shape {
@@ -30,30 +30,46 @@ PROTO Ramp [
                   metalness 0
                 }
                 geometry Box {
-                  size  1 1 0.1
+                  size  20 20 1
                 }
               }
             ]
           }
           Pose {
-            translation .5 0 0.25
+            translation 0 0 09.434
             children [
               Shape {
                 appearance USE APPEARANCE
                 geometry Box {
-                  size 1.57 1 0.1
+                  size 20 20 1
                 }
               }
             ]
           }
           Pose {
-            translation 1.707 0 0
+            translation 18.41 0 04.5
             rotation 0 -1 0 -0.5236
             children [
               Shape {
                 appearance USE APPEARANCE
                 geometry Box {
-                  size 1 1 0.1
+                  size 20 20 1
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -18.41 0 04.5
+            rotation 0 -1 0 0.5236
+            children [
+              Shape {
+                appearance DEF APPEARANCE PBRAppearance {
+                  baseColor IS color
+                  roughness 0.3
+                  metalness 0
+                }
+                geometry Box {
+                  size  20 20 1
                 }
               }
             ]
@@ -62,7 +78,8 @@ PROTO Ramp [
       }
     ]
     name IS name
-    model "ramp 30 degrees"
+    model "ramp"
+    contactMaterial "ramp"
     boundingObject USE RAMP
   }
 }

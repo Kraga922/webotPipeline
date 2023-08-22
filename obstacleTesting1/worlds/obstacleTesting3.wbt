@@ -14,20 +14,15 @@ WorldInfo {
     }
     ContactProperties {
       material1 "floor"
-      material2 "FL_wheel"
+      material2 "wheel"
+      coulombFriction [
+        1
+      ]
+      frictionRotation 1 1                                                                                                  # any positive vector
+      rollingFriction 0.02 0 0                                                                                          # rolling/spinning friction 
+      softCFM 1e-05 
     }
-    ContactProperties {
-      material1 "floor"
-      material2 "FR_wheel"
-    }
-    ContactProperties {
-      material1 "floor"
-      material2 "BL_wheel"
-    }
-    ContactProperties {
-      material1 "floor"
-      material2 "BR_wheel"
-    }
+     
   ]
 }
 Viewpoint {
@@ -48,6 +43,7 @@ SolidBox {
   name "box(2)"
   size 0.2 0.3 0.08
 }
+
 TexturedBackground {
 }
 TexturedBackgroundLight {
