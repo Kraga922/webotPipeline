@@ -15,35 +15,30 @@ WorldInfo {
     ContactProperties {
       material1 "floor"
       material2 "wheel"
-      coulombFriction [
-        1
-      ]
-      frictionRotation 1 1                                                                                                  # any positive vector
-      rollingFriction 0.02 0 0                                                                                          # rolling/spinning friction 
-      softCFM 1e-05 
+      frictionRotation 1 1
+      rollingFriction 0.02 0 0
+      softCFM 1e-05
     }
-     
   ]
 }
 Viewpoint {
-  orientation 0.20251739331806096 -0.23705387199175826 -0.9501537597554265 4.818518376780744
-  position -0.5087400466533331 -5.286294585988461 2.6474048806044643
+  orientation 0.27577172687668167 -0.2787006685342794 -0.9199325475348715 4.639562663005044
+  position -2.9824429078344776 -50.62032803712806 31.91783842071208
 }
 SolidBox {
   translation -12 0 0
-  size 4 18 0.7
+  size 4 18 1
 }
 SolidBox {
   translation 0 0 0
   name "box(1)"
-  size 4 18 1.5
+  size 4 18 2
 }
 SolidBox {
   translation 12 0 0
   name "box(2)"
-  size 4 18 2.5
+  size 4 18 3.5
 }
-
 TexturedBackground {
 }
 TexturedBackgroundLight {
@@ -77,8 +72,7 @@ DEF WALL_2 Solid {
   name "wall 2"
   boundingObject USE WALL_SHAPE
 }
-
 Car4wMulti2 {
-  translation -20 0 1.5 
+  translation -20 0 1.5
   controller "CarSupMultiBasic"
 }
