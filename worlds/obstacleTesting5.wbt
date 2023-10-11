@@ -1,0 +1,92 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/SandyGround.proto"
+EXTERNPROTO "../protos/Car4wMulti2.proto"
+EXTERNPROTO "../protos/Mission.proto"
+EXTERNPROTO "../protos/Base.proto"
+
+WorldInfo {
+  basicTimeStep 16
+  contactProperties [
+    ContactProperties {
+      material2 "dumbbell"
+    }
+    ContactProperties {
+      material1 "ground"
+      material2 "wheel"
+      coulombFriction [
+        0.6
+      ]
+      rollingFriction 0.02 0 0
+      softCFM 1e-05
+    }
+    ContactProperties {
+      material1 "ramp"
+      material2 "wheel"
+      coulombFriction [
+        0.64
+      ]
+      rollingFriction 0.015 0 0
+      softCFM 1e-05
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.32394022351376817 -0.4199954945251254 -0.8477420103831385 4.806754049841023
+  position -14.195006551954112 -186.48502857919863 148.02809159953972
+}
+DEF ELEVATION_GRID Solid {
+  translation -40 -80 0
+  children [
+    Shape {
+      appearance SandyGround {
+        textureTransform TextureTransform {
+          scale 20 20
+        }
+      }
+      geometry DEF EG ElevationGrid {
+        xDimension 16
+        xSpacing 7.8125
+        yDimension 16
+        ySpacing 7.8125
+        thickness 16
+      }
+    }
+  ]
+  contactMaterial "ground"
+  boundingObject USE EG
+  locked TRUE
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  contactMaterial "floor2"
+  size 1 1
+}
+Car4wMulti2 {
+  translation -28 -65 3
+}
+Base {
+  translation -28 -65 -9
+}
+Mission {
+  translation 40 -55 10
+  name "mission1"
+}
+Mission {
+  translation -20 10 10
+  name "mission2"
+}
+Mission {
+  translation 50 -5 10
+  name "mission3"
+}
+Mission {
+  translation -20 -50 10
+  name "mission4"
+}

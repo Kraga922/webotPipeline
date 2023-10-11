@@ -1,0 +1,40 @@
+#VRML_SIM R2023b utf8
+
+PROTO Base [
+  field SFVec3f    translation  0 0 0
+  field SFRotation rotation     0 0 1 0
+  field SFString   name         "base"
+  field SFColor    color        0.5 0.5 0.5        # Defines the color of the ramp.
+]
+{
+  Solid {
+    translation IS translation
+    rotation IS rotation
+    children [
+      DEF BASE Group {
+        children [
+          
+          Pose {
+            translation 0 0 09.434
+            children [
+              Shape {
+                appearance DEF APPEARANCE PBRAppearance {
+                  baseColor IS color
+                  roughness 0.3
+                  metalness 0
+                }
+                geometry Box {
+                  size 10 10 1
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+    name IS name
+    model "base"
+    contactMaterial "base"
+    boundingObject USE BASE
+  }
+}

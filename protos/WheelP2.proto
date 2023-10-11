@@ -1,0 +1,32 @@
+#VRML_SIM R2023b utf8 
+PROTO WheelP2 [
+  field SFVec3f    translation 0 0 0
+  field SFRotation rotation    0 1 0 0
+  field SFFloat    mass        2
+  field  SFString  name        "WheelP2"
+]
+{
+  Solid {
+    translation IS translation
+    name IS name
+    rotation IS rotation
+    children [
+      DEF WHEEL Shape {
+        appearance PBRAppearance {
+          baseColor 0.305882 0.898039 0.25098
+          roughness 1
+          metalness 0
+        }
+        geometry Box {
+          size   0.08 0.08 0.02
+        }
+
+      }
+    ]
+    boundingObject USE WHEEL
+    physics Physics {
+      density -1
+      mass IS mass
+    }
+  }
+}
