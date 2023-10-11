@@ -2,11 +2,9 @@
 from controller import Supervisor
 import sys
 import os
-import math
 basedir = '../../..'
 sys.path.append(basedir)
 from InsertMultiSym2 import get_motors 
-from InsertSymWorld import getMissionLocation 
 import traceback
 import json
 
@@ -19,11 +17,11 @@ def save_results(results_dir, obs_passed, time):
 def obstaclePassed(time, value, old_obs_passed, old_time):
     obs = []
 
-    if value >= 359.9:
+    if value >= 14:
         new_obs_passed = 3
-    elif value >= 0.4:
+    elif value >= 2:
         new_obs_passed = 2
-    elif value >= -0.1:
+    elif value >= -10:
         new_obs_passed = 1
     else:
         new_obs_passed = 0
@@ -35,58 +33,27 @@ def obstaclePassed(time, value, old_obs_passed, old_time):
 
     return [new_obs_passed, new_time]
 
+    # if value >= 0.9:
+    #     if (obs_passed[0] == 3):
+    #         time = min(time,obs_passed[1]) 
+    #     obs = [3, time]
+    # elif value >= 0.4: 
+    #     if (obs_passed[0] == 2):
+    #         time = min(time,obs_passed[1]) 
+    #     obs = [2, time]
+    # elif value >= -0.1:
+    #     if (obs_passed[0] == 1):
+    #         time = min(time,obs_passed[1]) 
+    #     obs = [1, time]
+    # else:
+    #     obs = [0, time]
 
-def read_text_file(file_path):
-    with open(file_path, "r") as file:
-        content = file.read()
-    return content.strip()
-
-
-def closest_mission(missions, coordinates):
-    mission_keys = list(missions.keys())
-    closest_mission = mission_keys[0]
-    closest_distance = distanceToMission(coordinates, missions[closest_mission])
-    for key in mission_keys:
-        distance = distanceToMission(coordinates, missions[key])
-        if distance< closest_distance:
-            closest_distance = distance
-            closest_mission = key
-    return closest_mission
-
-def distanceToMission(coordinates, mission):
-    return math.sqrt((coordinates[0]-mission[0])**2 + (coordinates[1]-mission[1])**2)
-        
-def goToMission(current_angle_radians, missions, coordinates):
-    closestMission = missions[closest_mission(missions,coordinates)]
-    current_angle_radians = round(current_angle_radians, 1)
-    # if current_angle_radians<0:
-    #     current_angle_radians = 6.28 + current_angle_radians
-    #print(f"cur {current_angle_radians}")
-    y = coordinates[1] - closestMission[1]
-    x = coordinates[0] - closestMission[0]
-    #print (f"x: {x}, y: {y}")
-    mission_angle_radians = round(math.atan2(-y, -x),1)
-    #print(mission_angle_radians)
-    #print(f"mis {mission_angle_radians}")
-    if coordinates[1] == closestMission[1] and coordinates[0] == closestMission[0]:
-        #remove mission
-        print("At mission")
-    
-    if current_angle_radians < mission_angle_radians- .7:
-        #print("right")
-        leftSpeed = -5.0
-        rightSpeed = 10.0
-    elif current_angle_radians - .7 > mission_angle_radians: 
-        #print("left")
-        leftSpeed = -1.0
-        rightSpeed = 5.0
-    else:
-        #print("same")
-        leftSpeed = 15.0
-        rightSpeed = 15.0
-
-    return leftSpeed, rightSpeed
-
+    #num_obs = obs[0]
+    #print(f'Passed {num_obs} obstacles in {time} time units')
+    # result_obj = { 'num_obs': num_obs, 'time': int(time) }
+    # result_file = os.path.join(results_dir,'result.json')
+    # with open(result_file,'w') as fp:
+    #     json.dump(result_obj, fp, indent=2, separators=(',', ':'))
 
 def run():
     try:
@@ -96,7 +63,7 @@ def run():
             results_dir = f"{basedir}/obstacleTesting1/controllers/CarSupMulti/"
         timeout = os.getenv('WEBOTS_TIMEOUT')
         if timeout is None:
-            timeout = 60000  # in ms
+            timeout = 12000  # in ms
         else:
             timeout = int(timeout) 
         
@@ -108,17 +75,14 @@ def run():
         supervisor = Supervisor()
 
         gps = supervisor.getDevice("gps")
-        #gyro = supervisor.getDevice("gyro")
-        imu = supervisor.getDevice("inertial unit")
         #print(f"gps {gps}")
         gps.enable(10)
-        #gyro.enable(10)
-        imu.enable(10)
-        obstacle_time = 0
 
         ds = []
         dsNames = ['ds_right', 'ds_left']
         timestep = int(supervisor.getBasicTimeStep())
+
+
 
         supervisor.step(timestep) 
         html_save_path = os.path.join(results_dir,'WebotSim2.html') 
@@ -134,9 +98,6 @@ def run():
             wheels[i].setPosition(float('inf'))
             wheels[i].setVelocity(0.0)
         
-        missions = getMissionLocation(read_text_file("../../../jsonWheelShapes/ConvJsonWorld.json"))
-        
-        num_missions = len(missions)
         #avoidObstacleCounter = 0
         time = 0
         #Main loop
@@ -144,31 +105,15 @@ def run():
         best_obs_passed = 0
         best_time = 0
         maxDistance = 1.0  # where to stop the run, past all the obstacles
-        
         while supervisor.step(TIME_STEP) != -1: 
-            #pos = supervisor.getFromId(43).getOrientation()
-            #print(pos[3])
-            coordinates = gps.getValues()
-            #gyro_val = gyro.getValues()
-            rpy = imu.getRollPitchYaw()
-            #quat = imu.getQuaternion()
-            #print(quat)
-            leftSpeed, rightSpeed = goToMission(rpy[2], missions, coordinates)
 
-            closestMission = closest_mission(missions, coordinates)
-            mission_keys = list(missions.keys())
-            #print (mission_keys)
-            if (abs(coordinates[0] - missions[closestMission][0]) <= 3 and abs(coordinates[1] - missions[closestMission][1]) <=3 ):
-                missions.pop(closestMission)
-                obstacle_time = time 
-                #print("YOU MADE IT")
+            coordinates = gps.getValues()
+
             #print(gps.getSpeed())
             #print([round(number,3) for number in numbers])
-            speedVector = gps.getSpeedVector()
-            #print(speedVector)
-            #print(rpy)
-            mission_keys = list(missions.keys())
 
+            leftSpeed = 4.0
+            rightSpeed = 4.0
 
             time = int(supervisor.getTime() *1000)
             #print(time)
@@ -176,14 +121,15 @@ def run():
             #print("BODY position:", body_position)
             #print(robot_body.getPosition())
             [best_obs_passed, best_time] = obstaclePassed(time, coordinates[0], best_obs_passed, best_time)
-
-            if time > timeout or len(mission_keys) == 0:
+            #print(obs_passed)
+            #print(obs_passed)
+            #if time > timeout or coordinates[0] > maxDistance:
+            if time > timeout or best_obs_passed == 3:
                 leftSpeed = 0
                 rightSpeed = 0
                 
                 #obs_passed = obstaclePassed(time, coordinates[0], obs_passed)
-                print(f'obs passed: {num_missions-len(mission_keys)}, time: {obstacle_time}')
-                #print(f'obs passed: {best_obs_passed}, time: {best_time}')
+                print(f'obs passed: {best_obs_passed}, time: {best_time}')
 
                 supervisor.animationStopRecording()
                 supervisor.simulationSetMode(supervisor.SIMULATION_MODE_PAUSE)
@@ -196,10 +142,13 @@ def run():
                     supervisor.simulationQuit(0)
 
             for i in range (len(wheels)):
-                if (wheels[i].getName()).endswith("SYM"):
-                    wheels[i].setVelocity(leftSpeed)
-                else:
-                    wheels[i].setVelocity(rightSpeed)     
+                wheels[i].setVelocity(leftSpeed)     
+            # wheels[0].setVelocity(leftSpeed)
+            # wheels[1].setVelocity(rightSpeed)
+            # wheels[2].setVelocity(leftSpeed)
+            # wheels[3].setVelocity(rightSpeed)
+            # wheels[4].setVelocity(leftSpeed)
+            # wheels[5].setVelocity(rightSpeed)
 
         #supervisor.worldRestart()
     except:
@@ -212,4 +161,4 @@ def run():
 if __name__ == "__main__":
 
     run()
-  
+    
