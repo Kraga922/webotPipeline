@@ -1,5 +1,6 @@
 import json
 import os
+import random
 
 def read_text_file(file_path):
     with open(file_path, "r") as file:
@@ -21,6 +22,12 @@ def generate_geometry_code(geom_data, indentation=14):
             geom_code += f" {indent}{geom_type} {geom_props}\n"
         return geom_code
 
+# def battery_energy_to_weight(template, json_data):
+#     json_obj = json.loads(json_data)
+#     energy = json_obj["battery"]["Energy"]
+#     mass = (99.1049 + 0.000001274 * energy) * 1000
+#     template = template.replace(f"*INSERT_BATTERY_MASS*", str(mass))
+#     return template
 
 def create_proto_from_template(template, json_data):
     json_obj = json.loads(json_data)
@@ -195,44 +202,7 @@ def create_template(json_data):
     #print(bodies_wheels_code)
     return bodies_wheels_code, motors
 
-def getMissionLocation(json_data):
-    #find flags 
-    # add flag name as key and flag x and y values and the value
-    # return the dict
-    json_obj = json.loads(json_data)
-    missions_dict = {}
 
-    for mission in json_obj["Missions"]:
-        mission_name = mission["Name"]
-        x_location = mission["X-location"]
-        y_location = mission["Y-location"]
-        missions_dict[mission_name] = (x_location, y_location)
-
-    return missions_dict
-
-def insertMissions(json_data):
-    json_obj = json.loads(json_data)
-    num = 0
-    body_design = ""
-    for missions in json_obj["Missions"]:
-        num += 1
-        body_design += f"""
-Mission {{
-  translation {missions["X-location"]} {missions["Y-location"]} 10
-  name "mission{num}"
-}}
-"""
-    return body_design
-
-def replaceMaterial(modified_world, json_data):
-    json_obj = json.loads(json_data)
-    for material in json_obj["Materials"]:
-      Friction = str(material["Friction Coefficient"]) # just a number   
-      RollingFriction = str(material["Rolling Resistance Coefficient"])
-      modified_world = modified_world.replace(f"*InsertCoulombFriction*", Friction)
-      modified_world = modified_world.replace(f"*InsertRollingFriction*", RollingFriction)
-    return modified_world
-    
 def main(pipeline_dir):
    
     json_file_path = os.path.join(pipeline_dir, "jsonWheelShapes/ConvJsonMultiSym2.json")
@@ -248,35 +218,15 @@ def main(pipeline_dir):
     #num_bodies, num_wheels = num_wheels_bodies(json_data)
     #modified_content = content.replace("**InsertBodiesAndWheels**", create_template(num_bodies-1,num_wheels, json_data))
     modified_content = content.replace("**InsertBodiesAndWheels**", create_template(json_data)[0])
- 
     with open(os.path.join(pipeline_dir, "Car4wMultiTemp2.proto"), "w") as file:
         file.write(modified_content)
     
-    json_world_file_path = os.path.join(pipeline_dir, "jsonWheelShapes/ConvJsonWorld.json")
-    json_world_data = read_text_file(json_world_file_path) 
-
-    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting4Temp.wbt"), "r") as file:
-        content = file.read()
- 
-    #num_bodies, num_wheels = num_wheels_bodies(json_data)
-    #modified_content = content.replace("**InsertBodiesAndWheels**", create_template(num_bodies-1,num_wheels, json_data))
-    modified_world = content.replace("**Missions**", insertMissions(json_world_data))
-    #print(modified_world)
-    modified_world = replaceMaterial(modified_world, json_world_data)
-    #print(modified_world)
-    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting4.wbt"), "w") as file:
-        file.write(modified_world)
-    
-    
- 
-        # Read JSON data from file
- 
- 
     template_path = os.path.join(pipeline_dir, "Car4wMultiTemp2.proto")
     template_proto = read_text_file(template_path)
  
     # Convert JSON to Proto
     proto_output = create_proto_from_template(template_proto, json_data)
+    #proto_output = battery_energy_to_weight(proto_output, json_data)
  
     # Write the output into a new Proto file
     output_proto_file = os.path.join(pipeline_dir, "obstacleTesting1/protos/Car4wMulti2.proto")
@@ -380,6 +330,9 @@ if __name__ == "__main__":
 
 
 """
+
+# Replace Car4wMultiTemp.proto with the following code to have the weight battery trade off senario
+
 {
   "bodies":[
     {
@@ -484,4 +437,126 @@ if __name__ == "__main__":
 
 
 
+"""
+
+"""
+#VRML_SIM R2023b utf8
+
+
+PROTO Car4wMulti2 [
+  field SFVec3f    translation  0 0 0.04
+  field SFRotation rotation     0 0 1 0
+  field MFFloat    battery      [289800000 289800000 0]
+  field SFString   controller   "CarSupMulti"
+  field  SFString  name         "Car4wMulti2" 
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    supervisor TRUE
+    children [
+      DEF BODY Shape {
+        appearance PBRAppearance {
+          baseColor 0.917647 0.145098 0.145098
+          roughness 1
+          metalness 0
+        }
+        geometry *BODY_GEOMETRY* {
+          *BODY_SIZE*
+        }
+      }
+      
+      **InsertBodiesAndWheels**
+
+      DEF BATTERY_MASS HingeJoint {
+          jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor .01 .01 .01
+          }
+          endPoint Solid {
+          translation .01 .01 .01 
+          rotation 1 0 0 1.5708
+          children [
+              DEF WHEEL4SYM Shape {
+              appearance PBRAppearance {
+                  baseColor 0.1305882 0.098039 0.85098
+                  roughness 1
+                  metalness 0
+              }
+              geometry Box {
+                  size .1 .1 .1 
+              }
+              }
+          ]
+          name "BATTERY_MASS"
+          contactMaterial "wheel"
+          boundingObject USE WHEEL1
+          physics Physics {
+              density *INSERT_BATTERY_MASS*
+          }
+          }
+      }
+      DEF DS_RIGHT DistanceSensor {
+        translation 0.1 -0.03 0
+        rotation 0 0 1 -0.3
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.184314 0.596078 0.847059
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.01 0.01 0.01
+            }
+          }
+        ]
+        name "ds_right"
+      }
+      DEF DS_LEFT DistanceSensor {
+        translation 0.1 0.03 0
+        rotation 0 0 1 0.3
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.184314 0.596078 0.847059
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.01 0.01 0.01
+            }
+          }
+        ]
+        name "ds_left"
+      }
+      DEF COMPASS Compass {
+      }
+      DEF GPS GPS {
+      }
+      DEF GYRO Gyro {
+      }
+      DEF INERTIAL_UNIT InertialUnit {
+      }
+    ]
+    name IS name
+    boundingObject USE BODY
+    physics Physics {
+      density 300
+    }
+    controller "CarSupMulti"
+    battery IS battery
+  }
+}
+
+Update the MultiSym json file by adding this at the end 
+
+,
+  "battery":{
+    "Energy" : 289800
+  }
+
+Uncomment the battery to weight method
 """

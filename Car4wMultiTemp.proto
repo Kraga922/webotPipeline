@@ -1,14 +1,10 @@
 #VRML_SIM R2023b utf8
-# license: Copyright Cyberbotics Ltd. Licensed for use only with Webots.
-# license url: https://cyberbotics.com/webots_assets_license
-# documentation url: https://webots.cloud/run?url=https://github.com/cyberbotics/webots/blob/released/projects/samples/tutorials/protos/FourWheelsRobot.proto
-# keywords: robot/wheeled
+
 
 PROTO Car4wMulti2 [
   field SFVec3f    translation  0 0 0.04
   field SFRotation rotation     0 0 1 0
-  field SFFloat    bodyMass     1
-  field MFFloat    battery      [360000000 360000000 0]
+  field MFFloat    battery      [289800000 289800000 0]
   field SFString   controller   "CarSupMulti"
   field  SFString  name         "Car4wMulti2" 
 ]
@@ -78,8 +74,7 @@ PROTO Car4wMulti2 [
     name IS name
     boundingObject USE BODY
     physics Physics {
-      density -1
-      mass IS bodyMass
+      density 300
     }
     controller "CarSupMulti"
     battery IS battery

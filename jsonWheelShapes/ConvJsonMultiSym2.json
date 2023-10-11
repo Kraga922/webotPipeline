@@ -1,39 +1,40 @@
-
 {
   "bodies":[
     {
       "Name":"BODY",
-      "Rigid":false,
+      "Rigid":true,
       "Anchor":"0.0 0.0 0.0",
       "wheels":[
         {
           "Name":"WHEEL1",
           "WheelNum":"1",
           "Symmetrical":true,
-          "Anchor":"-0.10459649587189535 01.4060051888227462 -0.2961112663149834",
-          "Shape":"Box",
+          "Anchor":"0.187482634265632 0.24399120807647706 -0.07854320570826531",
+          "Shape":"Sphere",
           "Dimensions":{
-            "size":"0.3566353142261505 0.3334794282913208 0.6309681117534638"
+            "radius":"0.09948095500469209",
+            "subdivision":"1"
           }
         },
         {
           "Name":"WHEEL2",
           "WheelNum":"2",
           "Symmetrical":true,
-          "Anchor":"0.03272926515345992 01.0361949801445007 -0.4646447807550431",
-          "Shape":"Box",
+          "Anchor":"0.18377896863696608 0.2470070630311966 -0.0793683783710003",
+          "Shape":"Sphere",
           "Dimensions":{
-            "size":"0.4595842629671097 0.942377781867981 0.8698218286037446"
+            "radius":"0.08415286540985108",
+            "subdivision":"1"
           }
         },
         {
           "Name":"WHEEL3",
           "WheelNum":"3",
           "Symmetrical":true,
-          "Anchor":"-0.06278231024799061 01.1376732885837555 -0.4673374146223069",
+          "Anchor":"0.19910811441111492 0.24862864315509797 -0.084122643917799",
           "Shape":"Sphere",
           "Dimensions":{
-            "radius":"0.7958815336227418",
+            "radius":"0.09240669310092926",
             "subdivision":"1"
           }
         },
@@ -41,32 +42,21 @@
           "Name":"WHEEL4",
           "WheelNum":"4",
           "Symmetrical":true,
-          "Anchor":"-0.14243564470717028 01.0708364993333816 -0.5350601702928544",
+          "Anchor":"0.057747629094603785 0.24726479947566987 -0.08363296911120416",
           "Shape":"Sphere",
           "Dimensions":{
-            "radius":"0.9642051696777344",
+            "radius":"0.09944694459438325",
             "subdivision":"1"
           }
-        }
-      ],
-      "Shape":"Box",
-      "Dimensions":{
-        "size":"0.51422166731208564 01.8649818003177643 0.7502251565456391"
-      }
-    },
-    {
-      "Name":"BODY1",
-      "Rigid":true,
-      "Anchor":"01.6579751665703957 0.0 0.0",
-      "wheels":[
+        },
         {
           "Name":"WHEEL5",
           "WheelNum":"5",
           "Symmetrical":true,
-          "Anchor":"0.9489910791494512 01.7529031932353978 -0.8635855525732042",
+          "Anchor":"-0.019257088892896946 0.24949721693992616 -0.0859868471324444",
           "Shape":"Sphere",
           "Dimensions":{
-            "radius":"0.22253832817077636",
+            "radius":"0.07150170087814331",
             "subdivision":"1"
           }
         },
@@ -74,28 +64,96 @@
           "Name":"WHEEL6",
           "WheelNum":"6",
           "Symmetrical":true,
-          "Anchor":"0.16801187880652796 01.4472229294478897 -0.643162938952446",
-          "Shape":"Cylinder",
+          "Anchor":"0.17829045722768344 0.23272875249385835 -0.09043541595339777",
+          "Shape":"Sphere",
           "Dimensions":{
-            "height":"0.9458864331245423",
-            "radius":"0.9485652089118958"
-          }
-        },
-        {
-          "Name":"WHEEL7",
-          "WheelNum":"7",
-          "Symmetrical":true,
-          "Anchor":"-0.8202028966684945 01.610744029283524 -0.57474016249179846",
-          "Shape":"Box",
-          "Dimensions":{
-            "size":"0.29702944159507756 0.7000573098659515 0.6728777348995209"
+            "radius":"0.09465553760528565",
+            "subdivision":"1"
           }
         }
       ],
       "Shape":"Cylinder",
       "Dimensions":{
-        "height":0.8036726415157319,
-        "radius":1.4008643329143528
+        "height":0.09351292699575425,
+        "radius":0.19958372116088868
+      }
+    },
+    {
+      "Name":"BODY1",
+      "Rigid":false,
+      "Anchor":"0.39802690446376804 0.0 0.0",
+      "wheels":[
+        {
+          "Name":"WHEEL7",
+          "WheelNum":"7",
+          "Symmetrical":true,
+          "Anchor":"0.19601297459355538 0.24615716934204104 -0.09543879121541977",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.0866641104221344",
+            "subdivision":"1"
+          }
+        },
+        {
+          "Name":"WHEEL8",
+          "WheelNum":"8",
+          "Symmetrical":true,
+          "Anchor":"-0.15480556926553202 0.21856592148542406 -0.07379870742559433",
+          "Shape":"Cylinder",
+          "Dimensions":{
+            "height":"0.03653866112232208",
+            "radius":"0.09014257609844208"
+          }
+        },
+        {
+          "Name":"WHEEL9",
+          "WheelNum":"9",
+          "Symmetrical":true,
+          "Anchor":"0.12109585931871615 0.24460511505603794 -0.09346645921468735",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.09876986920833589",
+            "subdivision":"1"
+          }
+        },
+        {
+          "Name":"WHEEL10",
+          "WheelNum":"10",
+          "Symmetrical":true,
+          "Anchor":"0.07836336081922078 0.23201837539672854 -0.09585220903158188",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.09956703782081605",
+            "subdivision":"1"
+          }
+        },
+        {
+          "Name":"WHEEL11",
+          "WheelNum":"11",
+          "Symmetrical":true,
+          "Anchor":"0.16917980845188368 0.24294183254241947 -0.09634989112615586",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.09465654075145721",
+            "subdivision":"1"
+          }
+        },
+        {
+          "Name":"WHEEL12",
+          "WheelNum":"12",
+          "Symmetrical":true,
+          "Anchor":"0.15213977071137139 0.23804984986782077 -0.10234023660421372",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.08223556339740754",
+            "subdivision":"1"
+          }
+        }
+      ],
+      "Shape":"Cylinder",
+      "Dimensions":{
+        "height":0.1048623412847519,
+        "radius":0.19844318330287936
       }
     }
   ]

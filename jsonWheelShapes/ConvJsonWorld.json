@@ -9,7 +9,7 @@
         {
         "Name":"Mission(2)",
         "X-location": -20,
-        "Y-location": 10
+        "Y-location": 30
         },
         {
         "Name":"Mission(3)",
@@ -26,6 +26,28 @@
         {
         "Friction Coefficient": 0.6,
         "Rolling Resistance Coefficient": 0.02
+        }
+    ],
+    "Peaks": [
+        {
+            "Name":"Q1",
+            "Min": 0,
+            "Max": 3
+        },
+        {
+            "Name":"Q2",
+            "Min": 4,
+            "Max": 10
+        },
+        {
+            "Name":"Q3",
+            "Min": 9,
+            "Max": 19
+        },
+        {
+            "Name":"Q4",
+            "Min": 17,
+            "Max": 31
         }
     ]
 }
