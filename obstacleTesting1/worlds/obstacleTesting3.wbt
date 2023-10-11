@@ -30,18 +30,18 @@ Viewpoint {
   position -0.5087400466533331 -5.286294585988461 2.6474048806044643
 }
 SolidBox {
-  translation -0.2 0 0
-  size 0.2 0.3 0.03
+  translation -12 0 0
+  size 4 18 0.7
 }
 SolidBox {
-  translation 0.3 0 0
+  translation 0 0 0
   name "box(1)"
-  size 0.2 0.3 0.05
+  size 4 18 1.5
 }
 SolidBox {
-  translation 0.8 0 0
+  translation 12 0 0
   name "box(2)"
-  size 0.2 0.3 0.08
+  size 4 18 2.5
 }
 
 TexturedBackground {
@@ -50,10 +50,10 @@ TexturedBackgroundLight {
 }
 Floor {
   contactMaterial "floor"
-  size 6 2
+  size 60 20
 }
 DEF WALL_1 Solid {
-  translation 3 0 0.05
+  translation 30 0 0.5
   children [
     DEF WALL_SHAPE Shape {
       appearance PBRAppearance {
@@ -62,7 +62,7 @@ DEF WALL_1 Solid {
         metalness 0
       }
       geometry Box {
-        size 0.02 0.98 0.1
+        size 0.2 9.8 1
       }
     }
   ]
@@ -70,31 +70,15 @@ DEF WALL_1 Solid {
   boundingObject USE WALL_SHAPE
 }
 DEF WALL_2 Solid {
-  translation -1.5 0 0.05
+  translation -30 0 0.5
   children [
     USE WALL_SHAPE
   ]
   name "wall 2"
   boundingObject USE WALL_SHAPE
 }
-DEF WALL_3 Solid {
-  translation 0 -0.5 0.05
-  rotation 0 0 1 1.5708
-  children [
-    USE WALL_SHAPE
-  ]
-  name "wall 3"
-  boundingObject USE WALL_SHAPE
-}
-DEF WALL_4 Solid {
-  translation 0 0.5 0.05
-  rotation 0 0 1 1.5708
-  children [
-    USE WALL_SHAPE
-  ]
-  name "wall 4"
-  boundingObject USE WALL_SHAPE
-}
+
 Car4wMulti2 {
-  translation -1.2 0 0.1
+  translation -20 0 1.5 
+  controller "CarSupMultiBasic"
 }
