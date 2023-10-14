@@ -17,11 +17,11 @@ def save_results(results_dir, obs_passed, time):
 def obstaclePassed(time, value, old_obs_passed, old_time):
     obs = []
 
-    if value >= 14:
+    if value >= 9:
         new_obs_passed = 3
-    elif value >= 2:
+    elif value >= 1:
         new_obs_passed = 2
-    elif value >= -10:
+    elif value >= -7:
         new_obs_passed = 1
     else:
         new_obs_passed = 0
@@ -63,7 +63,7 @@ def run():
             results_dir = f"{basedir}/obstacleTesting1/controllers/CarSupMulti/"
         timeout = os.getenv('WEBOTS_TIMEOUT')
         if timeout is None:
-            timeout = 22000  # in ms
+            timeout = 20000  # in ms
         else:
             timeout = int(timeout) 
         
