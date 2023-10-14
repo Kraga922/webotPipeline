@@ -63,7 +63,7 @@ def run():
             results_dir = f"{basedir}/obstacleTesting1/controllers/CarSupMulti/"
         timeout = os.getenv('WEBOTS_TIMEOUT')
         if timeout is None:
-            timeout = 12000  # in ms
+            timeout = 22000  # in ms
         else:
             timeout = int(timeout) 
         
