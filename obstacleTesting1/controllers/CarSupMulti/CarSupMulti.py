@@ -74,12 +74,12 @@ def goToMission(current_angle_radians, missions, coordinates):
     
     if current_angle_radians < mission_angle_radians- .7:
         #print("right")
-        leftSpeed = -5.0
-        rightSpeed = 10.0
+        leftSpeed = -3.0
+        rightSpeed = 7.0
     elif current_angle_radians - .7 > mission_angle_radians: 
         #print("left")
-        leftSpeed = -1.0
-        rightSpeed = 5.0
+        leftSpeed = -5.0
+        rightSpeed = 12.0
     else:
         #print("same")
         leftSpeed = 15.0
@@ -96,7 +96,7 @@ def run():
             results_dir = f"{basedir}/obstacleTesting1/controllers/CarSupMulti/"
         timeout = os.getenv('WEBOTS_TIMEOUT')
         if timeout is None:
-            timeout = 60000  # in ms
+            timeout = 100000  # in ms
         else:
             timeout = int(timeout) 
         
@@ -152,7 +152,7 @@ def run():
             #gyro_val = gyro.getValues()
             rpy = imu.getRollPitchYaw()
             #quat = imu.getQuaternion()
-            #print(quat)
+            
             leftSpeed, rightSpeed = goToMission(rpy[2], missions, coordinates)
 
             closestMission = closest_mission(missions, coordinates)
