@@ -24,7 +24,7 @@ PROTO Base [
                   metalness 0
                 }
                 geometry Box {
-                  size 10 10 1
+                  size 2 2 .3
                 }
               }
             ]

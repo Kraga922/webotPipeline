@@ -1,0 +1,76 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/SandyGround.proto"
+EXTERNPROTO "../protos/Car4wMulti2.proto"
+EXTERNPROTO "../protos/Ramp.proto"
+EXTERNPROTO "../protos/Mission.proto"
+EXTERNPROTO "../protos/Base.proto"
+
+WorldInfo {
+  basicTimeStep 16
+  contactProperties [
+    ContactProperties {
+      material2 "dumbbell"
+    }
+    ContactProperties {
+      material1 "ground"
+      material2 "wheel"
+      coulombFriction *InsertCoulombFriction*
+      rollingFriction *InsertRollingFriction* 0 0
+      softCFM 1e-05
+    }
+    ContactProperties {
+      material1 "ramp"
+      material2 "wheel"
+      coulombFriction .64
+      rollingFriction .015 0 0
+      softCFM 1e-05
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.32394022351376817 -0.4199954945251254 -0.8477420103831385 4.806754049841023
+  position -12.628556713411646 -76.42326476661101 100.75603183242228
+}
+DEF ELEVATION_GRID Solid {
+  translation 0 0 0
+  children [
+    Shape {
+      appearance SandyGround {
+        textureTransform TextureTransform {
+          scale 20 20
+        }
+      }
+      geometry DEF EG ElevationGrid {
+        height *peaks*
+        xDimension 10
+        xSpacing 3.9
+        yDimension 10
+        ySpacing 3.9
+        thickness 8
+      }
+    }
+  ]
+  contactMaterial "ground"
+  boundingObject USE EG
+  locked TRUE
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  contactMaterial "floor2"
+  translation 8 8 -2
+  size 1 1
+}
+Car4wMulti2 {
+  translation 5 5 2
+}
+Base {
+  translation 5 5 -8
+}
+**Missions**
