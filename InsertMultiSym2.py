@@ -560,3 +560,107 @@ Update the MultiSym json file by adding this at the end
 
 Uncomment the battery to weight method
 """
+
+"""
+{
+  "bodies":[
+    {
+      "Name":"BODY",
+      "Rigid":false,
+      "Anchor":"0.0 0.0 0.0",
+      "wheels":[
+        {
+          "Name":"WHEEL1",
+          "WheelNum":"1",
+          "Symmetrical":true,
+          "Anchor":"-0.10459649587189535 01.4060051888227462 -0.2961112663149834",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.3566353142261505 0.3334794282913208 0.6309681117534638"
+          }
+        },
+        {
+          "Name":"WHEEL2",
+          "WheelNum":"2",
+          "Symmetrical":true,
+          "Anchor":"0.03272926515345992 01.0361949801445007 -0.4646447807550431",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.4595842629671097 0.942377781867981 0.8698218286037446"
+          }
+        },
+        {
+          "Name":"WHEEL3",
+          "WheelNum":"3",
+          "Symmetrical":true,
+          "Anchor":"-0.06278231024799061 01.1376732885837555 -0.4673374146223069",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.7958815336227418",
+            "subdivision":"1"
+          }
+        },
+        {
+          "Name":"WHEEL4",
+          "WheelNum":"4",
+          "Symmetrical":true,
+          "Anchor":"-0.14243564470717028 01.0708364993333816 -0.5350601702928544",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.9642051696777344",
+            "subdivision":"1"
+          }
+        }
+      ],
+      "Shape":"Box",
+      "Dimensions":{
+        "size":"0.51422166731208564 01.8649818003177643 0.7502251565456391"
+      }
+    },
+    {
+      "Name":"BODY1",
+      "Rigid":true,
+      "Anchor":"01.6579751665703957 0.0 0.0",
+      "wheels":[
+        {
+          "Name":"WHEEL5",
+          "WheelNum":"5",
+          "Symmetrical":true,
+          "Anchor":"0.9489910791494512 01.7529031932353978 -0.8635855525732042",
+          "Shape":"Sphere",
+          "Dimensions":{
+            "radius":"0.22253832817077636",
+            "subdivision":"1"
+          }
+        },
+        {
+          "Name":"WHEEL6",
+          "WheelNum":"6",
+          "Symmetrical":true,
+          "Anchor":"0.16801187880652796 01.4472229294478897 -0.643162938952446",
+          "Shape":"Cylinder",
+          "Dimensions":{
+            "height":"0.9458864331245423",
+            "radius":"0.9485652089118958"
+          }
+        },
+        {
+          "Name":"WHEEL7",
+          "WheelNum":"7",
+          "Symmetrical":true,
+          "Anchor":"-0.8202028966684945 01.610744029283524 -0.57474016249179846",
+          "Shape":"Box",
+          "Dimensions":{
+            "size":"0.29702944159507756 0.7000573098659515 0.6728777348995209"
+          }
+        }
+      ],
+      "Shape":"Cylinder",
+      "Dimensions":{
+        "height":0.8036726415157319,
+        "radius":1.4008643329143528
+      }
+    }
+  ]
+}
+"""

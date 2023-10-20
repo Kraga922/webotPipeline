@@ -49,6 +49,150 @@ PROTO Car4wMulti2 [
               }
             }
             
+            DEF WHEEL5 HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL5_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor5"
+                    maxTorque 5000
+                    maxVelocity 26
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL5_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL5 Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL5_GEOMETRY* {
+                        *WHEEL5_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_5"
+                contactMaterial "wheel"
+                boundingObject USE WHEEL5
+                physics Physics {
+                    density 100
+                }
+                }
+            }
+    
+            DEF WHEEL5SYM HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL5SYM_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor5SYM"
+                    maxTorque 5000
+                    maxVelocity 26
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL5SYM_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL5SYM Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL5SYM_GEOMETRY* {
+                        *WHEEL5SYM_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_5SYM"
+                contactMaterial "wheel"
+                boundingObject USE WHEEL5SYM
+                physics Physics {
+                    density 100
+                }
+                }
+            }
+    
+            DEF WHEEL6 HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL6_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor6"
+                    maxTorque 5000
+                    maxVelocity 26
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL6_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL6 Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL6_GEOMETRY* {
+                        *WHEEL6_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_6"
+                contactMaterial "wheel"
+                boundingObject USE WHEEL6
+                physics Physics {
+                    density 100
+                }
+                }
+            }
+    
+            DEF WHEEL6SYM HingeJoint {
+                jointParameters HingeJointParameters {
+                axis 0 1 0
+                anchor *WHEEL6SYM_ANCHOR* 
+                }
+                device [
+                RotationalMotor {
+                    name "motor6SYM"
+                    maxTorque 5000
+                    maxVelocity 26
+                }
+                ]
+                endPoint Solid {
+                translation *WHEEL6SYM_ANCHOR* 
+                rotation 1 0 0 1.5708
+                children [
+                    DEF WHEEL6SYM Shape {
+                    appearance PBRAppearance {
+                        baseColor 0.305882 0.898039 0.25098
+                        roughness 1
+                        metalness 0
+                    }
+                    geometry *WHEEL6SYM_GEOMETRY* {
+                        *WHEEL6SYM_SIZE*
+                    }
+                    }
+                ]
+                name "wheel_6SYM"
+                contactMaterial "wheel"
+                boundingObject USE WHEEL6SYM
+                physics Physics {
+                    density 100
+                }
+                }
+            }
+    
             DEF WHEEL7 HingeJoint {
                 jointParameters HingeJointParameters {
                 axis 0 1 0
@@ -115,366 +259,6 @@ PROTO Car4wMulti2 [
                 name "wheel_7SYM"
                 contactMaterial "wheel"
                 boundingObject USE WHEEL7SYM
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL8 HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL8_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor8"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL8_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL8 Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL8_GEOMETRY* {
-                        *WHEEL8_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_8"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL8
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL8SYM HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL8SYM_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor8SYM"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL8SYM_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL8SYM Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL8SYM_GEOMETRY* {
-                        *WHEEL8SYM_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_8SYM"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL8SYM
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL9 HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL9_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor9"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL9_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL9 Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL9_GEOMETRY* {
-                        *WHEEL9_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_9"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL9
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL9SYM HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL9SYM_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor9SYM"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL9SYM_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL9SYM Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL9SYM_GEOMETRY* {
-                        *WHEEL9SYM_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_9SYM"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL9SYM
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL10 HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL10_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor10"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL10_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL10 Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL10_GEOMETRY* {
-                        *WHEEL10_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_10"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL10
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL10SYM HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL10SYM_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor10SYM"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL10SYM_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL10SYM Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL10SYM_GEOMETRY* {
-                        *WHEEL10SYM_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_10SYM"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL10SYM
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL11 HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL11_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor11"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL11_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL11 Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL11_GEOMETRY* {
-                        *WHEEL11_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_11"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL11
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL11SYM HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL11SYM_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor11SYM"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL11SYM_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL11SYM Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL11SYM_GEOMETRY* {
-                        *WHEEL11SYM_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_11SYM"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL11SYM
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL12 HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL12_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor12"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL12_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL12 Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL12_GEOMETRY* {
-                        *WHEEL12_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_12"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL12
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL12SYM HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL12SYM_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor12SYM"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL12SYM_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL12SYM Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL12SYM_GEOMETRY* {
-                        *WHEEL12SYM_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_12SYM"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL12SYM
                 physics Physics {
                     density 100
                 }
@@ -773,150 +557,6 @@ PROTO Car4wMulti2 [
                 name "wheel_4SYM"
                 contactMaterial "wheel"
                 boundingObject USE WHEEL4SYM
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL5 HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL5_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor5"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL5_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL5 Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL5_GEOMETRY* {
-                        *WHEEL5_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_5"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL5
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL5SYM HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL5SYM_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor5SYM"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL5SYM_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL5SYM Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL5SYM_GEOMETRY* {
-                        *WHEEL5SYM_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_5SYM"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL5SYM
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL6 HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL6_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor6"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL6_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL6 Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL6_GEOMETRY* {
-                        *WHEEL6_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_6"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL6
-                physics Physics {
-                    density 100
-                }
-                }
-            }
-    
-            DEF WHEEL6SYM HingeJoint {
-                jointParameters HingeJointParameters {
-                axis 0 1 0
-                anchor *WHEEL6SYM_ANCHOR* 
-                }
-                device [
-                RotationalMotor {
-                    name "motor6SYM"
-                    maxTorque 5000
-                    maxVelocity 26
-                }
-                ]
-                endPoint Solid {
-                translation *WHEEL6SYM_ANCHOR* 
-                rotation 1 0 0 1.5708
-                children [
-                    DEF WHEEL6SYM Shape {
-                    appearance PBRAppearance {
-                        baseColor 0.305882 0.898039 0.25098
-                        roughness 1
-                        metalness 0
-                    }
-                    geometry *WHEEL6SYM_GEOMETRY* {
-                        *WHEEL6SYM_SIZE*
-                    }
-                    }
-                ]
-                name "wheel_6SYM"
-                contactMaterial "wheel"
-                boundingObject USE WHEEL6SYM
                 physics Physics {
                     density 100
                 }

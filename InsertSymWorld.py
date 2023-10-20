@@ -30,7 +30,7 @@ def insertMissions(json_data):
         num += 1
         body_design += f"""
 Mission {{
-  translation {missions["X-location"]} {missions["Y-location"]} 10
+  translation {missions["X-location"]} {missions["Y-location"]} 7
   name "mission{num}"
 }}
 """
@@ -61,14 +61,15 @@ def modifyTerrain(modified_world, json_data):
       else:
         q4Min = terrain["Min"]
         q4Max = terrain["Max"]
-    for i in range(8):
-      peaks += [round(random.uniform(q1Min, q1Max), 2) for _ in range(8)]
-      peaks += [round(random.uniform(q2Min, q2Max), 2) for _ in range(8)]
+    r = 5
+    for i in range(r):
+      peaks += [round(random.uniform(q1Min, q1Max), 2) for _ in range(r)]
+      peaks += [round(random.uniform(q2Min, q2Max), 2) for _ in range(r)]
     ##random_numbers += [round(random.uniform(0, 1), 2) for _ in range(50)]
     #random_numbers += [round(random.uniform(2, 4), 2) for _ in range(50)]
-    for j in range(8):
-      peaks += [round(random.uniform(q4Min, q4Max), 2) for _ in range(8)]
-      peaks += [round(random.uniform(q3Min, q3Max), 2) for _ in range(8)]
+    for j in range(r):
+      peaks += [round(random.uniform(q4Min, q4Max), 2) for _ in range(r)]
+      peaks += [round(random.uniform(q3Min, q3Max), 2) for _ in range(r)]
     
     modified_world = modified_world.replace(f"*peaks*", str(peaks))
     return modified_world
@@ -79,7 +80,7 @@ def main(pipeline_dir):
     json_world_file_path = os.path.join(pipeline_dir, "jsonWheelShapes/ConvJsonWorld.json")
     json_world_data = read_text_file(json_world_file_path) 
 
-    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting4Temp.wbt"), "r") as file:
+    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting8Temp.wbt"), "r") as file:
         content = file.read()
  
     #num_bodies, num_wheels = num_wheels_bodies(json_data)
@@ -89,7 +90,7 @@ def main(pipeline_dir):
     modified_world = replaceMaterial(modified_world, json_world_data)
     modified_world = modifyTerrain(modified_world, json_world_data)
     #print(modified_world)
-    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting4.wbt"), "w") as file:
+    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting8.wbt"), "w") as file:
         file.write(modified_world)
      
  
