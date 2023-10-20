@@ -72,7 +72,7 @@ Floor {
   size 1 1
 }
 Car4wMulti2 {
-  translation 5 5 2
+  translation 5 5 3
 }
 Base {
   translation 5 5 -8
