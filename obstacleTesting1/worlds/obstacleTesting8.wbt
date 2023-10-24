@@ -5,6 +5,7 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/SandyGround.proto"
 EXTERNPROTO "../protos/Car4wMulti2.proto"
+EXTERNPROTO "../protos/Ramp.proto"
 EXTERNPROTO "../protos/Mission.proto"
 EXTERNPROTO "../protos/Base.proto"
 
@@ -17,28 +18,25 @@ WorldInfo {
     ContactProperties {
       material1 "ground"
       material2 "wheel"
-      coulombFriction [
-        0.6
-      ]
+      coulombFriction 0.6
       rollingFriction 0.02 0 0
       softCFM 1e-05
     }
     ContactProperties {
       material1 "ramp"
       material2 "wheel"
-      coulombFriction [
-        0.64
-      ]
-      rollingFriction 0.015 0 0
+      coulombFriction .64
+      rollingFriction .015 0 0
       softCFM 1e-05
     }
   ]
 }
 Viewpoint {
-  orientation 0.21933720206958898 -0.3678961332858234 -0.9036280356992163 5.116748637152424
-  position -13.573467685519908 -34.69293054068361 35.88481995367817
+  orientation 0.32394022351376817 -0.4199954945251254 -0.8477420103831385 4.806754049841023
+  position -12.628556713411646 -76.42326476661101 100.75603183242228
 }
 DEF ELEVATION_GRID Solid {
+  translation 0 0 0
   children [
     Shape {
       appearance SandyGround {
@@ -47,9 +45,7 @@ DEF ELEVATION_GRID Solid {
         }
       }
       geometry DEF EG ElevationGrid {
-        height [
-          2.76, 2.51, 2.5, 1.01, 0.57, 5.82, 3.01, 4.68, 7.46, 5.04, 2.88, 0.65, 0.95, 1.67, 1.52, 5.14, 5.63, 7.16, 3.27, 7.26, 1.28, 1.64, 2.86, 0.15, 2.38, 3.13, 6.76, 6.57, 5.14, 6.4, 1.34, 2.52, 0.14, 1.13, 0.62, 7.96, 5.07, 6.62, 7.76, 4.27, 1.92, 0.11, 0.16, 0.77, 0.57, 4.11, 6.23, 6.93, 3.03, 4.21, 16.47, 15.05, 14.07, 15.37, 15.7, 11.9, 12.83, 11.44, 11.86, 8.19, 14.76, 14.91, 16.63, 17.59, 17.9, 8.25, 12.37, 9.12, 8.2, 9.44, 16.62, 15.92, 16.9, 14.5, 14.66, 10.31, 8.71, 9.02, 11.77, 9.7, 14.72, 14.29, 15.29, 16.58, 17.2, 10.21, 11.47, 7.48, 11.98, 10.53, 15.47, 14.27, 13.98, 14.46, 13.17, 12.98, 12.9, 9.04, 10.11, 7.22
-        ]
+        height [0.87, 0.97, 0.95, 0.97, 0.5, 2.25, 3.02, 3.41, 1.97, 2.12, 0.35, 0.7, 0.01, 1.26, 0.91, 1.89, 1.74, 2.42, 2.22, 2.6, 0.88, 1.2, 1.15, 1.48, 1.16, 2.15, 3.47, 2.21, 2.06, 1.94, 1.09, 0.36, 0.46, 1.18, 0.3, 3.48, 3.96, 3.17, 1.56, 2.33, 0.52, 1.43, 0.32, 1.39, 0.94, 2.91, 1.96, 2.63, 1.75, 2.83, 8.15, 7.63, 7.81, 6.67, 6.94, 4.62, 6.12, 3.53, 5.42, 4.35, 7.58, 6.56, 7.88, 8.25, 6.61, 4.34, 6.3, 4.89, 5.02, 6.11, 8.99, 8.2, 8.51, 6.85, 8.8, 4.84, 5.93, 5.83, 5.33, 3.57, 7.38, 7.4, 7.65, 7.71, 6.8, 3.6, 5.15, 4.99, 5.2, 5.71, 8.15, 8.22, 6.99, 8.46, 8.35, 5.79, 5.87, 4.84, 5.88, 6.32]
         xDimension 10
         xSpacing 3.9
         yDimension 10
@@ -67,28 +63,32 @@ TexturedBackground {
 TexturedBackgroundLight {
 }
 Floor {
-  translation 8 8 -2
   contactMaterial "floor2"
+  translation 8 8 -2
   size 1 1
 }
 Car4wMulti2 {
-  translation 5 5 3
+  translation 5 5 2
 }
 Base {
   translation 5 5 -8
 }
+
 Mission {
   translation 12 7 7
   name "mission1"
 }
+
 Mission {
   translation 22 5 7
   name "mission2"
 }
+
 Mission {
   translation 22 22 7
   name "mission3"
 }
+
 Mission {
   translation 5 30 7
   name "mission4"
