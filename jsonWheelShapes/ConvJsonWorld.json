@@ -8,18 +8,18 @@
         },
         {
         "Name":"Mission(2)",
-        "X-location": 22,
+        "X-location": 30,
         "Y-location": 5
         },
         {
         "Name":"Mission(3)",
-        "X-location": 22,
+        "X-location": 30,
         "Y-location": 22
         },
         {
         "Name":"Mission(4)",
-        "X-location": 5,
-        "Y-location": 30
+        "X-location": 3,
+        "Y-location": 32
         }
     ],
     "Materials": [
