@@ -24,7 +24,7 @@ PROTO Mission [
                   metalness 0
                 }
                 geometry Box {
-                  size  .5 .5 22
+                  size  .25 .25 22
                 }
               }
             ]
