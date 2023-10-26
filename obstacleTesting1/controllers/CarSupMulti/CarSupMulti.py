@@ -16,26 +16,6 @@ def save_results(results_dir, obs_passed, time):
     with open(result_file,'w') as fp:
         json.dump(result_obj, fp, indent=2, separators=(',', ':'))
 
-def obstaclePassed(time, value, old_obs_passed, old_time):
-    obs = []
-
-    if value >= 359.9:
-        new_obs_passed = 3
-    elif value >= 0.4:
-        new_obs_passed = 2
-    elif value >= -0.1:
-        new_obs_passed = 1
-    else:
-        new_obs_passed = 0
-    
-    if new_obs_passed > old_obs_passed:
-        new_time = time
-    else:
-        new_time = old_time
-
-    return [new_obs_passed, new_time]
-
-
 def read_text_file(file_path):
     with open(file_path, "r") as file:
         content = file.read()
@@ -99,7 +79,7 @@ def run():
             results_dir = f"{basedir}/obstacleTesting1/controllers/CarSupMulti/"
         timeout = os.getenv('WEBOTS_TIMEOUT')
         if timeout is None:
-            timeout = 100000  # in ms
+            timeout = 20000  # in ms
         else:
             timeout = int(timeout) 
         
@@ -178,15 +158,14 @@ def run():
             #body_position = body_node.getPosition()
             #print("BODY position:", body_position)
             #print(robot_body.getPosition())
-            [best_obs_passed, best_time] = obstaclePassed(time, coordinates[0], best_obs_passed, best_time)
             prevCoordinates = gps.getValues()
             if time > timeout or len(mission_keys) == 0:
                 leftSpeed = 0
                 rightSpeed = 0
-                
-                #obs_passed = obstaclePassed(time, coordinates[0], obs_passed)
-                print(f'obs passed: {num_missions-len(mission_keys)}, time: {obstacle_time}')
-                #print(f'obs passed: {best_obs_passed}, time: {best_time}')
+
+                best_obs_passed = num_missions-len(mission_keys)
+                best_time = obstacle_time
+                print(f'obs passed: {best_obs_passed}, time: {best_time}')
 
                 supervisor.animationStopRecording()
                 supervisor.simulationSetMode(supervisor.SIMULATION_MODE_PAUSE)
