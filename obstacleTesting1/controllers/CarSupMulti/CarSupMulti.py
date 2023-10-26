@@ -56,7 +56,7 @@ def closest_mission(missions, coordinates):
 def distanceToMission(coordinates, mission):
     return math.sqrt((coordinates[0]-mission[0])**2 + (coordinates[1]-mission[1])**2)
         
-def goToMission(current_angle_radians, missions, coordinates):
+def goToMission(current_angle_radians, missions, coordinates, prevCoordinates):
     closestMission = missions[closest_mission(missions,coordinates)]
     current_angle_radians = round(current_angle_radians, 1)
     # if current_angle_radians<0:
@@ -68,10 +68,13 @@ def goToMission(current_angle_radians, missions, coordinates):
     mission_angle_radians = round(math.atan2(-y, -x),1)
     #print(mission_angle_radians)
     #print(f"mis {mission_angle_radians}")
-    if coordinates[1] == closestMission[1] and coordinates[0] == closestMission[0]:
-        #remove mission
-        print("At mission")
-    
+
+    #if (abs(y) < 2 and abs(x) <2 ):
+    # if abs(coordinates[0] -  prevCoordinates[0]) < .03 and abs(coordinates[1] -  prevCoordinates[1]) < .03 and abs(coordinates[2] -  prevCoordinates[2]) < .03:
+    #     leftSpeed = -10.0
+    #     rightSpeed = -15.0
+    #     print("hi")
+    # change to elif if you uncomment the code above
     if current_angle_radians < mission_angle_radians- .7:
         #print("right")
         leftSpeed = -3.0
@@ -144,21 +147,21 @@ def run():
         best_obs_passed = 0
         best_time = 0
         maxDistance = 1.0  # where to stop the run, past all the obstacles
-        
+        prevCoordinates = gps.getValues()
         while supervisor.step(TIME_STEP) != -1: 
             #pos = supervisor.getFromId(43).getOrientation()
-            #print(pos[3])
+   
             coordinates = gps.getValues()
             #gyro_val = gyro.getValues()
             rpy = imu.getRollPitchYaw()
             #quat = imu.getQuaternion()
             
-            leftSpeed, rightSpeed = goToMission(rpy[2], missions, coordinates)
+            leftSpeed, rightSpeed = goToMission(rpy[2], missions, coordinates, prevCoordinates)
 
             closestMission = closest_mission(missions, coordinates)
             mission_keys = list(missions.keys())
             #print (mission_keys)
-            if (abs(coordinates[0] - missions[closestMission][0]) <= 3 and abs(coordinates[1] - missions[closestMission][1]) <=3 ):
+            if (abs(coordinates[0] - missions[closestMission][0]) <= 1.5 and abs(coordinates[1] - missions[closestMission][1]) <=1.5 ):
                 missions.pop(closestMission)
                 obstacle_time = time 
                 #print("YOU MADE IT")
@@ -176,7 +179,7 @@ def run():
             #print("BODY position:", body_position)
             #print(robot_body.getPosition())
             [best_obs_passed, best_time] = obstaclePassed(time, coordinates[0], best_obs_passed, best_time)
-
+            prevCoordinates = gps.getValues()
             if time > timeout or len(mission_keys) == 0:
                 leftSpeed = 0
                 rightSpeed = 0
