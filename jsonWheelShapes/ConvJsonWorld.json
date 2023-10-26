@@ -3,8 +3,8 @@
     "Missions": [
         {
         "Name":"Mission(1)",
-        "X-location": 12,
-        "Y-location": 7
+        "X-location": 13,
+        "Y-location": 6
         },
         {
         "Name":"Mission(2)",
@@ -32,22 +32,22 @@
         {
             "Name":"Q1",
             "Min": 0,
-            "Max": 1.5
+            "Max": 0.5
         },
         {
             "Name":"Q2",
-            "Min": 1.5,
-            "Max": 4
+            "Min": 0.15,
+            "Max": 1.1
         },
         {
             "Name":"Q3",
-            "Min": 3.5,
-            "Max": 6.5
+            "Min": 1,
+            "Max": 2.2
         },
         {
             "Name":"Q4",
-            "Min": 6.5,
-            "Max": 9
+            "Min": 2.15,
+            "Max": 3.2
         }
     ]
 }
