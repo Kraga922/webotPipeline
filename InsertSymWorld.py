@@ -38,13 +38,18 @@ Pose {{
       }}
       geometry Cylinder {{
         height 4
-        radius 1.5 
+        radius {json_obj["ZoneRadius"]} 
       }}
     }}
   ]
 }}
 """
     return body_design
+
+def insertVehicle(modified_world, json_data):
+    json_obj = json.loads(json_data)
+    modified_world = modified_world.replace(f"*drop*", str(json_obj["Drop"]))
+    return modified_world
 
 def replaceMaterial(modified_world, json_data):
     json_obj = json.loads(json_data)
@@ -97,6 +102,7 @@ def main(pipeline_dir):
     #modified_content = content.replace("**InsertBodiesAndWheels**", create_template(num_bodies-1,num_wheels, json_data))
     modified_world = content.replace("**Missions**", insertMissions(json_world_data))
     #print(modified_world)
+    modified_world = insertVehicle(modified_world, json_world_data)
     modified_world = replaceMaterial(modified_world, json_world_data)
     modified_world = modifyTerrain(modified_world, json_world_data)
     #print(modified_world)
