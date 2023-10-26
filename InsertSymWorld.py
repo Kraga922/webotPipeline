@@ -29,11 +29,21 @@ def insertMissions(json_data):
     for missions in json_obj["Missions"]:
         num += 1
         body_design += f"""
-Mission {{
-  translation {missions["X-location"]} {missions["Y-location"]} 7
-  name "mission{num}"
+Pose {{
+  translation {missions["X-location"]} {missions["Y-location"]} 2.5
+  children [
+    Shape {{
+      appearance PBRAppearance {{
+        transparency 0.2
+      }}
+      geometry Box {{
+        size 3 3 4 
+      }}
+    }}
+  ]
 }}
 """
+
     return body_design
 
 def replaceMaterial(modified_world, json_data):
@@ -61,7 +71,7 @@ def modifyTerrain(modified_world, json_data):
       else:
         q4Min = terrain["Min"]
         q4Max = terrain["Max"]
-    r = 5
+    r = 18
     for i in range(r):
       peaks += [round(random.uniform(q1Min, q1Max), 2) for _ in range(r)]
       peaks += [round(random.uniform(q2Min, q2Max), 2) for _ in range(r)]
@@ -80,7 +90,7 @@ def main(pipeline_dir):
     json_world_file_path = os.path.join(pipeline_dir, "jsonWheelShapes/ConvJsonWorld.json")
     json_world_data = read_text_file(json_world_file_path) 
 
-    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting8Temp.wbt"), "r") as file:
+    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting9Temp.wbt"), "r") as file:
         content = file.read()
  
     #num_bodies, num_wheels = num_wheels_bodies(json_data)
@@ -90,7 +100,7 @@ def main(pipeline_dir):
     modified_world = replaceMaterial(modified_world, json_world_data)
     modified_world = modifyTerrain(modified_world, json_world_data)
     #print(modified_world)
-    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting8.wbt"), "w") as file:
+    with open(os.path.join(pipeline_dir, "obstacleTesting1/worlds/obstacleTesting9.wbt"), "w") as file:
         file.write(modified_world)
      
  
