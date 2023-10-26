@@ -36,14 +36,14 @@ Pose {{
       appearance PBRAppearance {{
         transparency 0.2
       }}
-      geometry Box {{
-        size 3 3 4 
+      geometry Cylinder {{
+        height 4
+        radius 1.5 
       }}
     }}
   ]
 }}
 """
-
     return body_design
 
 def replaceMaterial(modified_world, json_data):
