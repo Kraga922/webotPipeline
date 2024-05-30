@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+<robot name="C:/Krishiv/Omni/Car4wMulti2.urdf" xmlns:xacro="http://ros.org/wiki/xacro">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.514222 1.86498 0.750225"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.514222 1.86498 0.750225"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="gps">
+  </link>
+  <joint name="base_link_gps_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="gps"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="ds_left">
+  </link>
+  <joint name="base_link_ds_left_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="ds_left"/>
+    <origin xyz="0.1 0.03 0" rpy="0 0 0.3"/>
+  </joint>
+  <link name="ds_right">
+  </link>
+  <joint name="base_link_ds_right_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="ds_right"/>
+    <origin xyz="0.1 -0.03 0" rpy="0 0 -0.3"/>
+  </joint>
+  <joint name="motor4SYM" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_4SYM"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="-0.142436 -1.070836 -0.53506" rpy="1.5708 -0.000516 0"/>
+  </joint>
+  <link name="wheel_4SYM">
+    <visual>
+      <geometry>
+        <sphere radius="0.964205"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.964205"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor4" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_4"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="-0.142436 1.070836 -0.53506" rpy="1.5708 -0.000516 0"/>
+  </joint>
+  <link name="wheel_4">
+    <visual>
+      <geometry>
+        <sphere radius="0.964205"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.964205"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor3SYM" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_3SYM"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="-0.062782 -1.137673 -0.467337" rpy="1.5708 0 0"/>
+  </joint>
+  <link name="wheel_3SYM">
+    <visual>
+      <geometry>
+        <sphere radius="0.795882"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.795882"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor3" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_3"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="-0.062782 1.137673 -0.467337" rpy="1.5708 0 0"/>
+  </joint>
+  <link name="wheel_3">
+    <visual>
+      <geometry>
+        <sphere radius="0.795882"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.795882"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor2SYM" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_2SYM"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="0.032729 -1.036195 -0.464645" rpy="1.5708 0 0"/>
+  </joint>
+  <link name="wheel_2SYM">
+    <visual>
+      <geometry>
+        <box size="0.459584 0.942378 0.869822"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.459584 0.942378 0.869822"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor2" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_2"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="0.032729 1.036195 -0.464645" rpy="1.5708 0 0"/>
+  </joint>
+  <link name="wheel_2">
+    <visual>
+      <geometry>
+        <box size="0.459584 0.942378 0.869822"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.459584 0.942378 0.869822"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor1SYM" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_1SYM"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="-0.104596 -1.406005 -0.296111" rpy="1.5708 0 0"/>
+  </joint>
+  <link name="wheel_1SYM">
+    <visual>
+      <geometry>
+        <box size="0.356635 0.333479 0.630968"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.356635 0.333479 0.630968"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor1" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel_1"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="-0.104596 1.406005 -0.296111" rpy="1.5708 0 0"/>
+  </joint>
+  <link name="wheel_1">
+    <visual>
+      <geometry>
+        <box size="0.356635 0.333479 0.630968"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.356635 0.333479 0.630968"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="BODY1" type="continuous">
+    <parent link="base_link"/>
+    <child link="body_1"/>
+    <axis xyz="0 1 0"/>
+    <origin xyz="1.657975 0 0" rpy="0 -0.001496 0"/>
+  </joint>
+  <link name="body_1">
+    <visual>
+      <geometry>
+        <cylinder radius="1.40086" length="0.803673"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="1.40086" length="0.803673"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor7SYM" type="continuous">
+    <parent link="body_1"/>
+    <child link="wheel_7SYM"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="-0.820203 -1.610744 -0.57474" rpy="1.5708 0 0"/>
+  </joint>
+  <link name="wheel_7SYM">
+    <visual>
+      <geometry>
+        <box size="0.297029 0.700057 0.672878"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.297029 0.700057 0.672878"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor7" type="continuous">
+    <parent link="body_1"/>
+    <child link="wheel_7"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="-0.820203 1.610744 -0.57474" rpy="1.5708 0 0"/>
+  </joint>
+  <link name="wheel_7">
+    <visual>
+      <geometry>
+        <box size="0.297029 0.700057 0.672878"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.297029 0.700057 0.672878"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor6SYM" type="continuous">
+    <parent link="body_1"/>
+    <child link="wheel_6SYM"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="0.168012 -1.447223 -0.643163" rpy="1.5708 0.000746 0"/>
+  </joint>
+  <link name="wheel_6SYM">
+    <visual>
+      <geometry>
+        <cylinder radius="0.948565" length="0.945886"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.948565" length="0.945886"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor6" type="continuous">
+    <parent link="body_1"/>
+    <child link="wheel_6"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="0.168012 1.447223 -0.643163" rpy="1.5708 0.000746 0"/>
+  </joint>
+  <link name="wheel_6">
+    <visual>
+      <geometry>
+        <cylinder radius="0.948565" length="0.945886"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.948565" length="0.945886"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor5SYM" type="continuous">
+    <parent link="body_1"/>
+    <child link="wheel_5SYM"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="0.948991 -1.752903 -0.863586" rpy="1.5708 0 0"/>
+  </joint>
+  <link name="wheel_5SYM">
+    <visual>
+      <geometry>
+        <sphere radius="0.222538"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.222538"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="motor5" type="continuous">
+    <parent link="body_1"/>
+    <child link="wheel_5"/>
+    <axis xyz="0 -0.000004 -1"/>
+    <limit effort="5000" velocity="26"/>
+    <origin xyz="0.948991 1.752903 -0.863586" rpy="1.5708 0 0"/>
+  </joint>
+  <link name="wheel_5">
+    <visual>
+      <geometry>
+        <sphere radius="0.222538"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.222538"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>
